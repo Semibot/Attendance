@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="550.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="attendanceautomation.AttendanceController">
+   <children>
+      <Button fx:id="scoBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="41.0" layoutY="33.0" mnemonicParsing="false" onAction="#openScoWindow" prefHeight="250.0" prefWidth="220.0" text="SCO2.B.19">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="sdeBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="293.0" layoutY="33.0" mnemonicParsing="false" onAction="#openSdeWindow" prefHeight="250.0" prefWidth="220.0" text="SDE2.B.19">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="itoBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="41.0" layoutY="321.0" mnemonicParsing="false" onAction="#openItoWindow" prefHeight="250.0" prefWidth="220.0" text="ITO2.B.19" />
+      <Button fx:id="dbosBtn" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="293.0" layoutY="321.0" mnemonicParsing="false" onAction="#openDbosWindow" prefHeight="250.0" prefWidth="220.0" text="DB / OS.B.19" />
+      <Label layoutX="149.0" layoutY="597.0" text="Select your current subject.">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

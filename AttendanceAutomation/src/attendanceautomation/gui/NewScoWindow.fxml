@@ -16,9 +16,10 @@
       </Label>
       <Button fx:id="scoAttendBtn" layoutX="241.0" layoutY="537.0" mnemonicParsing="false" onAction="#handleAttendBtn" text="Attend" />
       <Label fx:id="scoAttendLbl" layoutX="67.0" layoutY="586.0" prefHeight="39.0" prefWidth="413.0" />
-      <TableView fx:id="tableViewSCO" layoutX="67.0" layoutY="85.0" prefHeight="433.0" prefWidth="413.0">
+      <TableView fx:id="scoTableView" layoutX="67.0" layoutY="85.0" prefHeight="433.0" prefWidth="413.0">
         <columns>
-            <TableColumn fx:id="scoColName" prefWidth="329.0" text="Name" />
+            <TableColumn fx:id="scoColFirstName" prefWidth="329.0" text="First Name" />
+            <TableColumn fx:id="scoColLastName" prefWidth="329.0" text="Last Name" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

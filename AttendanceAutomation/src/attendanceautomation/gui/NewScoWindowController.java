@@ -20,9 +20,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class NewScoWindowController implements Initializable{
     private AttendanceController parent;
     @FXML
-    private TableView tableViewSCO;
+    private TableView scoTableView;
     @FXML
-    private TableColumn scoColName;
+    private TableColumn scoColFirstName;
+    @FXML
+    private TableColumn scoColLastName;
     @FXML
     private Button scoAttendBtn;
     @FXML
@@ -34,7 +36,8 @@ public class NewScoWindowController implements Initializable{
     
     @FXML
     private void addStudentsSCO(){
-        scoColName.setCellValueFactory(new PropertyValueFactory<Student, String>("colScoName"));
+        scoColFirstName.setCellValueFactory(new PropertyValueFactory<Student, String>("scoColFirstName"));
+        scoColLastName.setCellValueFactory(new PropertyValueFactory<Student, String>("scoColLastName"));
     }
     
     @FXML

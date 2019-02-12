@@ -17,7 +17,7 @@ public class Attendance extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("Attendance.fxml"));
         
         Scene scene = new Scene(root);
-        stage.setTitle("Attendance Subject Page");
+        stage.setTitle("Attendance");
         stage.setScene(scene);
         stage.show();
     }

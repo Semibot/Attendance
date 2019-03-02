@@ -21,6 +21,10 @@ public class AttendanceController implements Initializable{
     @FXML private JFXButton attendBtn;
     @FXML private Label attendLabel;
     
+    public AttendanceController(){
+        
+    }
+    
     @FXML
     private void attendBtnAction(ActionEvent e){
         attendLabel.setText(nameTextField.getText()
@@ -30,7 +34,7 @@ public class AttendanceController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        nameTextField.setPromptText("Write your name here.");
+        nameTextField.setPromptText("Enter your name");
         datepicker.setPromptText("Select a date");
     }
 }

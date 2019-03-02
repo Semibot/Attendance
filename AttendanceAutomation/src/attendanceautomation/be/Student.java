@@ -1,6 +1,6 @@
 package attendanceautomation.be;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 /**
  *
@@ -9,9 +9,9 @@ import java.time.LocalDate;
 public class Student{
     private int id;
     private String name;
-    private LocalDate date;
+    private Date date;
     
-    public Student(int id, String name, LocalDate date){
+    public Student(int id, String name, Date date){
         this.id = id;
         this.name = name;
         this.date = date;
@@ -26,6 +26,10 @@ public class Student{
         return id;
     }
     
+    public void setId(int id){
+        this.id = id;
+    }
+    
     public String getName(){
         return name;
     }
@@ -34,11 +38,11 @@ public class Student{
         this.name = name;
     }
     
-    public LocalDate getDate(){
+    public Date getDate(){
         return date;
     }
     
-    public void setDate(LocalDate date){
+    public void setDate(Date date){
         this.date = date;
     }
 }

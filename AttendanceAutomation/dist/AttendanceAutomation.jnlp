@@ -8,8 +8,9 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="AttendanceAutomation.jar" size="5910" download="eager" />
+    <jar href="AttendanceAutomation.jar" size="9531" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+    <jar href="lib\sqljdbc42.jar" size="653996" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="AttendanceAutomation" >
     <param name="requiredFXVersion" value="8.0+"/>

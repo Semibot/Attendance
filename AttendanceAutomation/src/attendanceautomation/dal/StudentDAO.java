@@ -4,7 +4,6 @@ import attendanceautomation.be.Student;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +37,6 @@ public class StudentDAO{
             PreparedStatement stmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, s.getName());
-            stmt.setDate(2, s.getDate());
             
             int createdRows = stmt.executeUpdate();
             
@@ -68,8 +66,7 @@ public class StudentDAO{
             while(rs.next()){
                 int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                Date date = rs.getDate("date");
-                Student s = new Student(ids, name, date);
+                Student s = new Student(ids, name);
                 return s;
             }
         }catch(SQLServerException ex){
@@ -133,23 +130,22 @@ public class StudentDAO{
     
     public List<Student> getAllStudents(){
         
-        List<Student> stu = new ArrayList();
+        List<Student> studentList = new ArrayList();
         try(Connection conn = ds.getConnection()){
             String sqlStatement = "SELECT * FROM Student";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sqlStatement);
             while(rs.next()){
-                int id = rs.getInt("id");
+                int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                Date date = rs.getDate("date");
-                Student s = new Student(id, name, date);
-                stu.add(s);
+                Student s = new Student(ids, name);
+                studentList.add(s);
             }
         }catch(SQLServerException ex){
             Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
         }catch(SQLException ex){
             Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return stu;
+        return studentList;
     }
 }

@@ -17,14 +17,11 @@ public class Attendance extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("Attendance.fxml"));
         
         Scene scene = new Scene(root);
-        stage.setTitle("Attendance");
+        stage.setTitle("Attendance Login Page");
         stage.setScene(scene);
         stage.show();
     }
     
-    /**
-     * @param args
-     */
     public static void main(String[] args){
         launch(args);
     }

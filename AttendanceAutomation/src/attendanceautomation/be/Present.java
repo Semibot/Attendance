@@ -2,7 +2,7 @@ package attendanceautomation.be;
 
 /**
  *
- * @author DKE
+ * @author Daniel
  */
 public class Present{
     

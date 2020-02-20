@@ -6,8 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- *
- * @author DKE
+ * A simple pass through logic layer class.
+ * 
+ * @author Daniel
  */
 public class AALogic{
     

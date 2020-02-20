@@ -8,16 +8,15 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author DKE
+ * @author Daniel
  */
-public class Attendance extends Application{
+public class LoginPage extends Application{
     
     @Override
     public void start(Stage stage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Attendance.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("view/LoginPage.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Attendance Login Page");
+        stage.setTitle("Login Page");
         stage.setScene(scene);
         stage.show();
     }

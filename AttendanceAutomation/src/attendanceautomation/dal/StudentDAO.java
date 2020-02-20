@@ -1,7 +1,6 @@
 package attendanceautomation.dal;
 
 import attendanceautomation.be.Student;
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,25 +13,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author DKE
+ * A class to create, read, update and delete students
+ * in the database.
+ * 
+ * @author Daniel
  */
 public class StudentDAO{
-    SQLServerDataSource ds;
+    private DBConnector connector;
     
     public StudentDAO(){
-        ds = new SQLServerDataSource();
-        ds.setDatabaseName("Attend Auto");
-        ds.setUser("CS2018B_3");
-        ds.setPassword("CS2018B_3");
-        ds.setPortNumber(1433);
-        ds.setServerName("10.176.111.31");
+        connector = new DBConnector();
     }
     
     //Crud Create
     public Student createStudent(int id, Student s) throws SQLException{
-        
-        try(Connection conn = ds.getConnection()){
+        try(Connection conn = connector.ds.getConnection()){
             String sql = "INSERT INTO Student(name, date) VALUES(?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
@@ -57,8 +52,7 @@ public class StudentDAO{
     
     //cRud Read
     public Student getStudent(int id){
-        
-        try(Connection conn = ds.getConnection()){
+        try(Connection conn = connector.ds.getConnection()){
             PreparedStatement pstmt =
                     conn.prepareStatement("SELECT * FROM Student WHERE id=?");
             pstmt.setInt(1, id);
@@ -79,8 +73,7 @@ public class StudentDAO{
     
     //crUd Update
     public void updateStudent(Student s) throws SQLException{
-        
-        try(Connection conn = ds.getConnection()){
+        try(Connection conn = connector.ds.getConnection()){
             String sql = "UPDATE Student SET name=? WHERE id=?";
             PreparedStatement stmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
@@ -105,8 +98,7 @@ public class StudentDAO{
     
     //cruD Delete
     public void deleteStudent(Student s) throws SQLException{
-        
-        try(Connection conn = ds.getConnection()){
+        try(Connection conn = connector.ds.getConnection()){
             String sql = "DELETE FROM Student WHERE id=?";
             PreparedStatement stmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
@@ -129,9 +121,8 @@ public class StudentDAO{
     }
     
     public List<Student> getAllStudents(){
-        
         List<Student> studentList = new ArrayList();
-        try(Connection conn = ds.getConnection()){
+        try(Connection conn = connector.ds.getConnection()){
             String sqlStatement = "SELECT * FROM Student";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sqlStatement);

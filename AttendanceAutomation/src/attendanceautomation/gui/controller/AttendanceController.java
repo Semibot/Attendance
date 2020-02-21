@@ -1,6 +1,5 @@
 package attendanceautomation.gui.controller;
 
-import attendanceautomation.be.Student;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import java.net.URL;

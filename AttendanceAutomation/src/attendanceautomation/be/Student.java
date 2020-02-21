@@ -1,5 +1,6 @@
 package attendanceautomation.be;
 
+import java.time.LocalDate;
 import java.util.List;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -15,25 +16,25 @@ import javafx.beans.property.StringProperty;
 public class Student{
     private final IntegerProperty id;
     private final StringProperty name;
-    private final ObjectProperty<List<String>> present;
+    private final ObjectProperty<List<LocalDate>> date;
     
     public Student(final int id, final String name,
-            final List<String> present){
+            final List<LocalDate> date){
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.present = new SimpleObjectProperty(present);
+        this.date = new SimpleObjectProperty(date);
     }
     
-    public List<String> getPresent(){
-        return present.get();
+    public List<LocalDate> getDate(){
+        return date.get();
     }
     
-    public void setPresent(List<String> value){
-        present.set(value);
+    public void setDate(List<LocalDate> value){
+        date.set(value);
     }
     
-    public ObjectProperty presentProperty(){
-        return present;
+    public ObjectProperty dateProperty(){
+        return date;
     }
     
     public final String getName(){

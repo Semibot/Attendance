@@ -10,31 +10,31 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- *
+ * 
  * @author Daniel
  */
 public class Student{
     private final IntegerProperty id;
     private final StringProperty name;
-    private final ObjectProperty<List<LocalDate>> date;
+    private final ObjectProperty<List<LocalDate>> currentDate;
     
     public Student(final int id, final String name,
-            final List<LocalDate> date){
+            final List<LocalDate> currentDate){
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.date = new SimpleObjectProperty(date);
+        this.currentDate = new SimpleObjectProperty(currentDate);
     }
     
     public List<LocalDate> getDate(){
-        return date.get();
+        return currentDate.get();
     }
     
     public void setDate(List<LocalDate> value){
-        date.set(value);
+        currentDate.set(value);
     }
     
     public ObjectProperty dateProperty(){
-        return date;
+        return currentDate;
     }
     
     public final String getName(){
@@ -45,16 +45,16 @@ public class Student{
         this.name.set(name);
     }
     
+    public final StringProperty nameProperty(){
+        return name;
+    }
+    
     public final int getId(){
         return id.get();
     }
     
     public void setId(final int id){
         this.id.set(id);
-    }
-    
-    public final StringProperty nameProperty(){
-        return name;
     }
     
     public final IntegerProperty idProperty(){

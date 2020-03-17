@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +30,7 @@ public class StudentDAO{
     //Crud Create
     public Student createStudent(int id, Student s) throws SQLException{
         try(Connection conn = connector.ds.getConnection()){
-            String sql = "INSERT INTO Student(name, date) VALUES(?,?)";
+            String sql = "INSERT INTO Student(name, currentDate) VALUES(?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, s.getName());
@@ -64,8 +63,8 @@ public class StudentDAO{
             while(rs.next()){
                 int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                Date date = rs.getDate("date");
-                Student s = new Student(ids, name, (List<LocalDate>)date);
+                Date currentDate = rs.getDate("currentDate");
+                Student s = new Student(ids, name, (List<LocalDate>)currentDate);
                 return s;
             }
         }catch(SQLServerException ex){
@@ -134,8 +133,8 @@ public class StudentDAO{
             while(rs.next()){
                 int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                Date date = rs.getDate("date");
-                Student s = new Student(ids, name, (List<LocalDate>)date);
+                Date currentDate = rs.getDate("currentDate");
+                Student s = new Student(ids, name, (List<LocalDate>)currentDate);
                 studentList.add(s);
             }
         }catch(SQLServerException ex){

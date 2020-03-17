@@ -29,5 +29,10 @@
       <JFXPasswordField fx:id="passwordField" layoutX="178.0" layoutY="400.0" prefHeight="31.0" prefWidth="224.0" promptText="Enter password" />
       <ImageView fx:id="imageView" fitHeight="256.0" fitWidth="256.0" layoutX="147.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="147.0" AnchorPane.rightAnchor="147.0" AnchorPane.topAnchor="14.0" />
       <JFXTextField fx:id="userTextField" layoutX="178.0" layoutY="344.0" prefHeight="31.0" prefWidth="224.0" promptText="Enter name" />
+      <Label fx:id="loginPageLbl" layoutX="118.0" layoutY="585.0" prefHeight="39.0" prefWidth="315.0" textAlignment="CENTER" textFill="#ee0a0a">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

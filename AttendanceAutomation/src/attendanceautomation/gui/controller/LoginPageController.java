@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
@@ -28,10 +29,7 @@ public class LoginPageController implements Initializable{
     @FXML private JFXPasswordField passwordField;
     @FXML private ImageView imageView;
     @FXML private JFXButton loginBtn;
-    
-    private JFXTextField getUserTextField(){
-        return userTextField;
-    }
+    @FXML private Label loginPageLbl;
     
     @FXML
     private void handleLoginBtnAction(ActionEvent e) throws IOException{
@@ -50,11 +48,11 @@ public class LoginPageController implements Initializable{
             lp.close();
             
             Scene scene = new Scene(root);
-            attendanceWindow.setTitle("Attendance");
+            attendanceWindow.setTitle("Daily Attendance");
             attendanceWindow.setScene(scene);
             attendanceWindow.showAndWait();
         }else {
-            System.out.println("Wrong username and/or password");
+            loginPageLbl.setText("Wrong username and/or password");
         }
     }
     

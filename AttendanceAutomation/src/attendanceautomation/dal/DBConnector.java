@@ -11,7 +11,7 @@ public class DBConnector{
     SQLServerDataSource ds = new SQLServerDataSource();
     
     public DBConnector(){
-        ds.setDatabaseName("Attend Auto");
+        ds.setDatabaseName("Attendance Automation");
         ds.setUser("CS2018B_3");
         ds.setPassword("CS2018B_3");
         ds.setPortNumber(1433);

@@ -10,7 +10,7 @@ import java.util.List;
  * 
  * @author Daniel
  */
-public class AALogic{
+public class AAStudentLogic{
     
     public Student createStudent(Student s) throws SQLException{
         StudentDAO sdao = new StudentDAO();

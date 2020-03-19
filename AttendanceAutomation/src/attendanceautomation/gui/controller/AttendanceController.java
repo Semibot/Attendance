@@ -28,6 +28,7 @@ public class AttendanceController implements Initializable{
     
     @FXML
     private void handleSubmitButtonAction(ActionEvent e){
+        
         if(attendanceRBPresent.isSelected()){
             System.out.println("You are present.");
         }

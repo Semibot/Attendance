@@ -1,10 +1,10 @@
 package attendanceautomation.be;
 
+import java.util.ArrayList;
 import java.util.Date;
-import javafx.beans.property.BooleanProperty;
+import java.util.List;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -15,54 +15,27 @@ import javafx.beans.property.SimpleObjectProperty;
 public class Presence{
     private final IntegerProperty id;
     private final IntegerProperty studentId;
-    private final IntegerProperty teacherId;
-    private final ObjectProperty<Date> date;
-    private final BooleanProperty present;
+    private final ObjectProperty<Date> currentDate;
+    private final ObjectProperty<List<String>> isPresent;
     
     public Presence(final int id, final int studentId,
-            final int teacherId, final Date date,
-            final boolean present){
+         final Date currentDate, final List<String> isPresent){
         this.id = new SimpleIntegerProperty(id);
         this.studentId = new SimpleIntegerProperty(studentId);
-        this.teacherId = new SimpleIntegerProperty(teacherId);
-        this.date = new SimpleObjectProperty(date);
-        this.present = new SimpleBooleanProperty(present);
+        this.currentDate = new SimpleObjectProperty<>(currentDate);
+        this.isPresent = new SimpleObjectProperty<>(isPresent);
     }
     
-    public boolean isPresent(){
-        return present.get();
+    public int getId(){
+        return id.get();
     }
     
-    public void setPresent(boolean value){
-        present.set(value);
+    public void setId(int value){
+        id.set(value);
     }
     
-    public BooleanProperty presentProperty(){
-        return present;
-    }
-    
-    public Date getDate(){
-        return date.get();
-    }
-    
-    public void setDate(Date value){
-        date.set(value);
-    }
-    
-    public ObjectProperty dateProperty(){
-        return date;
-    }
-    
-    public int getTeacherId(){
-        return teacherId.get();
-    }
-    
-    public void setTeacherId(int value){
-        teacherId.set(value);
-    }
-    
-    public IntegerProperty teacherIdProperty(){
-        return teacherId;
+    public IntegerProperty idProperty(){
+        return id;
     }
     
     public int getStudentId(){
@@ -77,15 +50,32 @@ public class Presence{
         return studentId;
     }
     
-    public int getId(){
-        return id.get();
+    public Date getCurrentDate(){
+        return currentDate.get();
     }
     
-    public void setId(int value){
-        id.set(value);
+    public void setCurrentDate(Date value){
+        currentDate.set(value);
     }
     
-    public IntegerProperty idProperty(){
-        return id;
+    public ObjectProperty currentDateProperty(){
+        return currentDate;
+    }
+    
+    public List<String> getIsPresent(){
+        return isPresent.get();
+    }
+    
+    public void setIsPresent(List<String> value){
+        isPresent.set(value);
+    }
+    
+    public ObjectProperty isPresentProperty(){
+        return isPresent;
+    }
+    
+    @Override
+    public String toString(){
+        return currentDate+ " " +isPresent;
     }
 }

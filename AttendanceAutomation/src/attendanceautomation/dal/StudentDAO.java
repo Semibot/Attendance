@@ -3,12 +3,10 @@ package attendanceautomation.dal;
 import attendanceautomation.be.Student;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,11 +28,10 @@ public class StudentDAO{
     //Crud Create
     public Student createStudent(int id, Student s) throws SQLException{
         try(Connection conn = connector.ds.getConnection()){
-            String sql = "INSERT INTO Student(name, currentDate) VALUES(?,?)";
+            String sql = "INSERT INTO Student(name) VALUES(?)";
             PreparedStatement stmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, s.getName());
-            stmt.setDate(2, (Date)s.getDate());
             
             int createdRows = stmt.executeUpdate();
             
@@ -63,8 +60,7 @@ public class StudentDAO{
             while(rs.next()){
                 int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                Date currentDate = rs.getDate("currentDate");
-                Student s = new Student(ids, name, (List<LocalDate>)currentDate);
+                Student s = new Student(ids, name);
                 return s;
             }
         }catch(SQLServerException ex){
@@ -133,8 +129,7 @@ public class StudentDAO{
             while(rs.next()){
                 int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                Date currentDate = rs.getDate("currentDate");
-                Student s = new Student(ids, name, (List<LocalDate>)currentDate);
+                Student s = new Student(ids, name);
                 studentList.add(s);
             }
         }catch(SQLServerException ex){

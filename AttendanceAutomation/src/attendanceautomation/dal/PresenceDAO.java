@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,14 +27,14 @@ public class PresenceDAO{
     
     public Presence createPresence(int id, Presence p) throws SQLException{
         try(Connection conn = connector.ds.getConnection()){
-            String sql = "INSERT INTO Presence(studentId,"
-            +"teacherId, date, present) VALUES(?,?,?,?)";
+            String sql = "INSERT INTO Presence(studentId, "
+                    +"currentDate, isPresent) VALUES(?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, p.getStudentId());
-            pstmt.setInt(2, p.getTeacherId());
-            pstmt.setDate(3, (java.sql.Date)p.getDate());
-            pstmt.setBoolean(4, p.isPresent());
+            pstmt.setInt(1, p.getId());
+            pstmt.setInt(2, p.getStudentId());
+            pstmt.setDate(3, (java.sql.Date) p.getCurrentDate());
+            pstmt.setString(4, String.valueOf(p.getIsPresent()));
             
             int createdRows = pstmt.executeUpdate();
             
@@ -61,11 +62,10 @@ public class PresenceDAO{
             while(rs.next()){
                 int ids = rs.getInt("id");
                 int studentId = rs.getInt("studentId");
-                int teacherId = rs.getInt("teacherId");
-                Date date = rs.getDate("date");
-                boolean present = rs.getBoolean("present");
+                Date currentDate = rs.getDate("currentDate");
+                String isPresent = rs.getString("isPresent");
                 Presence p = new Presence(ids, studentId,
-                        teacherId, date, present);
+                    currentDate, Arrays.asList(isPresent.split(", ")));
                 return p;
             }
         }catch (SQLServerException ex){
@@ -132,11 +132,10 @@ public class PresenceDAO{
             while(rs.next()){
                 int id = rs.getInt("id");
                 int studentId = rs.getInt("studentId");
-                int teacherId = rs.getInt("teacherId");
-                Date date = rs.getDate("date");
-                boolean present = rs.getBoolean("present");
+                Date currentDate = rs.getDate("currentDate");
+                String isPresent = rs.getString("isPresent");
                 Presence p = new Presence(id, studentId,
-                        teacherId, date, present);
+                        currentDate, Arrays.asList(isPresent.split(", ")));
                 presence.add(p);
             }
         }catch(SQLServerException ex){

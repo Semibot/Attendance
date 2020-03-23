@@ -11,7 +11,11 @@ import java.util.List;
  * @author Daniel
  */
 public class AAStudentLogic{
-    StudentDAO sdao = new StudentDAO();
+    private StudentDAO sdao;
+    
+    public AAStudentLogic(){
+        sdao = new StudentDAO();
+    }
     
     public Student createStudent(Student s) throws SQLException{
         return sdao.createStudent(0, s);

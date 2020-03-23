@@ -10,7 +10,11 @@ import java.util.List;
  * @author Daniel
  */
 public class AAPresenceLogic{
-    PresenceDAO pdao = new PresenceDAO();
+    private PresenceDAO pdao;
+    
+    public AAPresenceLogic(){
+        pdao = new PresenceDAO();
+    }
     
     public Presence createPresence(Presence p) throws SQLException{
         return pdao.createPresence(0, p);

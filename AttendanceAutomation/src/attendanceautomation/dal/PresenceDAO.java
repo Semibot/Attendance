@@ -7,9 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,10 +31,9 @@ public class PresenceDAO{
                     +"currentDate, isPresent) VALUES(?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, p.getId());
-            pstmt.setInt(2, p.getStudentId());
-            pstmt.setDate(3, (java.sql.Date) p.getCurrentDate());
-            pstmt.setString(4, String.valueOf(p.getIsPresent()));
+            pstmt.setInt(1, p.getStudentId());
+            pstmt.setDate(2, Date.valueOf(p.getCurrentDate()));
+            pstmt.setString(3, p.getIsPresent());
             
             int createdRows = pstmt.executeUpdate();
             
@@ -62,10 +61,10 @@ public class PresenceDAO{
             while(rs.next()){
                 int ids = rs.getInt("id");
                 int studentId = rs.getInt("studentId");
-                Date currentDate = rs.getDate("currentDate");
+                LocalDate currentDate = LocalDate.class.cast(rs.getDate("currentDate"));
                 String isPresent = rs.getString("isPresent");
                 Presence p = new Presence(ids, studentId,
-                    currentDate, Arrays.asList(isPresent.split(", ")));
+                    currentDate, isPresent);
                 return p;
             }
         }catch (SQLServerException ex){
@@ -130,12 +129,12 @@ public class PresenceDAO{
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
-                int id = rs.getInt("id");
+                int ids = rs.getInt("id");
                 int studentId = rs.getInt("studentId");
-                Date currentDate = rs.getDate("currentDate");
+                LocalDate currentDate = LocalDate.class.cast(rs.getDate("currentDate"));
                 String isPresent = rs.getString("isPresent");
-                Presence p = new Presence(id, studentId,
-                        currentDate, Arrays.asList(isPresent.split(", ")));
+                Presence p = new Presence(ids, studentId,
+                        currentDate, isPresent);
                 presence.add(p);
             }
         }catch(SQLServerException ex){

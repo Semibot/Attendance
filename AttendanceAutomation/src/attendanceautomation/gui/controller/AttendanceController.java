@@ -1,13 +1,12 @@
 package attendanceautomation.gui.controller;
 
 import attendanceautomation.be.Presence;
-import attendanceautomation.be.Student;
 import attendanceautomation.gui.model.AAModel;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -19,7 +18,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -32,43 +33,44 @@ import javafx.util.Callback;
 public class AttendanceController implements Initializable{
     @FXML private Label attendanceLbl;
     @FXML private Label attendanceSubmitLbl;
+    @FXML private JFXButton attendanceBtn;
     @FXML private JFXDatePicker attendanceDatePicker;
-    @FXML private ToggleGroup attendanceTG1;
     @FXML private JFXComboBox attendanceComboBox;
     private LoginPageController parent;
     private String myText;
     private AAModel aam;
-    private Presence presence;
     
-    @FXML
-    private void handleSubmitButtonAction(ActionEvent e) throws SQLException, IOException{
-        RadioButton selectedRadioButton = (RadioButton)attendanceTG1.getSelectedToggle();
-        String toggleGroupValue = selectedRadioButton.getText();
-        
-        Presence p = new Presence(0,0,
-                Date.valueOf(attendanceDatePicker.getValue()),
-                presence.setIsPresent(toggleGroupValue));
-        aam.createPresence(p);
-        
-        Stage attendanceListWindow = new Stage();
-        attendanceListWindow.initModality(Modality.NONE);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendanceList.fxml"));
-        Parent root = loader.load();
-        AttendanceStudentListController alc = loader.getController();
-        alc.setParentWindowController(this);
-        
-        Scene scene = new Scene(root);
-        attendanceListWindow.setTitle("Student Attendance List Overview");
-        attendanceListWindow.setScene(scene);
-        attendanceListWindow.showAndWait();
+    public AttendanceController(){
+        aam = new AAModel();
     }
     
-    private void createComboBoxItems(){
-        ObservableList<Student> sList =
-                FXCollections.observableArrayList(
-                aam.getAllStudents());
-        attendanceComboBox.getItems().addAll(sList);
-        attendanceComboBox.setPromptText("Select a student");
+    @FXML
+    private void handleSubmitButtonAction(ActionEvent e) throws IOException, SQLException{
+        LocalDate date = attendanceDatePicker.getValue();
+        String present = String.valueOf(attendanceComboBox.getValue());
+        
+        if(date.equals(LocalDate.now()) && !present.isEmpty()){
+            Presence p = new Presence(0, parent.getStudentId(),
+                    date, present);
+            aam.createPresence(p);
+            
+            Stage attendanceListWindow = new Stage();
+            attendanceListWindow.initModality(Modality.NONE);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceautomation/gui/view/AttendanceList.fxml"));
+            Parent root = loader.load();
+            AttendanceListController alc = loader.getController();
+            alc.setParentWindowController(this);
+            Stage al = (Stage)attendanceBtn.getScene().getWindow();
+            al.close();
+            
+            Scene scene = new Scene(root);
+            attendanceListWindow.setTitle("Student Attendance List");
+            attendanceListWindow.setScene(scene);
+            attendanceListWindow.showAndWait();
+        }else {
+            aam.createPresence(null);
+            attendanceSubmitLbl.setText("Something went wrong!");
+        }
     }
     
     public void setText(String s){
@@ -105,14 +107,22 @@ public class AttendanceController implements Initializable{
         attendanceDatePicker.setDayCellFactory(dayCellFactory);
     }
     
-    public void setParentWindowController(LoginPageController parent){
-        this.parent = parent;
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb){
         setCurrentDateDatePicker();
         attendanceDatePicker.setValue(LocalDate.now());
+        attendanceDatePicker.setShowWeekNumbers(true);
         createComboBoxItems();
+    }
+    
+    private void createComboBoxItems(){
+        ObservableList<String> aList =
+                FXCollections.observableArrayList(
+                "Present", "Absent");
+        attendanceComboBox.getItems().addAll(aList);
+    }
+    
+    public void setParentWindowController(LoginPageController parent){
+        this.parent = parent;
     }
 }

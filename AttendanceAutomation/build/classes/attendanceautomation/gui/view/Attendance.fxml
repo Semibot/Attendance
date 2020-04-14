@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controller.AttendanceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #011a27;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceautomation.gui.controller.AttendanceController">
    <children>
-      <JFXDatePicker fx:id="attendanceDatePicker" layoutX="145.0" layoutY="134.0" prefHeight="31.0" prefWidth="311.0" />
-      <JFXRadioButton fx:id="attendanceRBPresent" layoutX="188.0" layoutY="222.0" text="Present">
-         <toggleGroup>
-            <ToggleGroup fx:id="attendanceTG1" />
-         </toggleGroup></JFXRadioButton>
-      <JFXRadioButton fx:id="attendanceRBAbsent" layoutX="334.0" layoutY="222.0" selected="true" text="Absent" toggleGroup="$attendanceTG1" />
-      <JFXButton buttonType="RAISED" layoutX="267.0" layoutY="300.0" onAction="#handleSubmitButtonAction" text="Submit" />
-      <Label fx:id="attendanceLbl" layoutX="14.0" layoutY="14.0">
+      <JFXDatePicker fx:id="attendanceDatePicker" defaultColor="#011a27" layoutX="242.0" layoutY="110.0" prefHeight="31.0" prefWidth="260.0" style="-fx-background-color: #e6df44;" />
+      <JFXButton fx:id="attendanceBtn" layoutX="267.0" layoutY="285.0" onAction="#handleSubmitButtonAction" style="-fx-border-color: e6df44;" text="Submit" textFill="#e6df44" />
+      <Label fx:id="attendanceLbl" layoutX="14.0" layoutY="14.0" textFill="#e6df44">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Label fx:id="attendanceSubmitLbl" layoutX="145.0" layoutY="350.0" prefHeight="39.0" prefWidth="311.0" />
+      <Label fx:id="attendanceSubmitLbl" layoutX="145.0" layoutY="350.0" prefHeight="39.0" prefWidth="311.0" textFill="#e6df44">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <JFXComboBox fx:id="attendanceComboBox" focusColor="#011a27" layoutX="242.0" layoutY="200.0" prefHeight="31.0" prefWidth="260.0" promptText="Select attendance" unFocusColor="#e6df44" />
+      <Label layoutX="77.0" layoutY="115.0" text="Date:" textFill="#e6df44" />
+      <Label layoutX="77.0" layoutY="205.0" text="Attendance:" textFill="#e6df44" />
    </children>
 </AnchorPane>

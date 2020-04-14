@@ -1,29 +1,34 @@
 package attendanceautomation.be;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
  * @author Daniel
  */
 public class Presence{
-    private final IntegerProperty id;
-    private final IntegerProperty studentId;
-    private final ObjectProperty<Date> currentDate;
-    private final ObjectProperty<List<String>> isPresent;
+    private IntegerProperty id;
+    private IntegerProperty studentId;
+    private final ObjectProperty<LocalDate> currentDate;
+    private final StringProperty isPresent;
     
-    public Presence(final int id, final int studentId,
-         final Date currentDate, final List<String> isPresent){
+    public Presence(int id, int studentId,
+            LocalDate currentDate, String isPresent){
         this.id = new SimpleIntegerProperty(id);
         this.studentId = new SimpleIntegerProperty(studentId);
         this.currentDate = new SimpleObjectProperty<>(currentDate);
-        this.isPresent = new SimpleObjectProperty<>(isPresent);
+        this.isPresent = new SimpleStringProperty(isPresent);
+    }
+    
+    public Presence(LocalDate currentDate, String isPresent){
+        this.currentDate = new SimpleObjectProperty<>(currentDate);
+        this.isPresent = new SimpleStringProperty(isPresent);
     }
     
     public int getId(){
@@ -50,32 +55,32 @@ public class Presence{
         return studentId;
     }
     
-    public Date getCurrentDate(){
-        return currentDate.get();
+    public LocalDate getCurrentDate(){
+        return currentDateProperty().get();
     }
     
-    public void setCurrentDate(Date value){
-        currentDate.set(value);
+    public void setCurrentDate(LocalDate value){
+        currentDateProperty().set(value);
     }
     
-    public ObjectProperty currentDateProperty(){
+    public ObjectProperty<LocalDate> currentDateProperty(){
         return currentDate;
     }
     
-    public List<String> getIsPresent(){
-        return isPresent.get();
+    public String getIsPresent(){
+        return isPresentProperty().get();
     }
     
-    public void setIsPresent(List<String> value){
-        isPresent.set(value);
+    public void setIsPresent(String value){
+        isPresentProperty().set(value);
     }
     
-    public ObjectProperty isPresentProperty(){
+    public StringProperty isPresentProperty(){
         return isPresent;
     }
     
     @Override
     public String toString(){
-        return currentDate+ " " +isPresent;
+        return currentDate+ ", " +isPresent;
     }
 }

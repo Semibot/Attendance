@@ -5,15 +5,26 @@ import attendanceautomation.be.Student;
 import attendanceautomation.bll.AAPresenceLogic;
 import attendanceautomation.bll.AAStudentLogic;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  *
  * @author Daniel
  */
 public class AAModel{
+    private final ObservableList data = getPresenceData();
+    @FXML private TableView<Presence> attendanceListTableView = new TableView();
+    @FXML private TableColumn<Presence, LocalDate> dateColumn = new TableColumn();
+    @FXML private TableColumn<Presence, String> attendanceColumn = new TableColumn();
     private AAPresenceLogic aapl;
     private AAStudentLogic aasl;
     
@@ -22,19 +33,23 @@ public class AAModel{
         aasl = new AAStudentLogic();
     }
     
-    public Presence createPresence(Presence p) throws SQLException{
-        return aapl.createPresence(p);
+    public void populateTableView(){
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("currentDate"));
+        attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("isPresent"));
+        attendanceListTableView.setItems(data);
     }
     
-    public void addPresence(Presence p){
-        try{
-            Presence presence = aapl.createPresence(p);
-            //presences.getItems().clear();
-            //listPresence.addAll(presence);
-            //presences.getItems().addAll(listPresence);
-        }catch (SQLException ex){
-            Logger.getLogger(AAModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private ObservableList getPresenceData(){
+        List list = new ArrayList();
+        list.add(new Presence(LocalDate.of(1980, Month.APRIL, 6), "Present"));
+        list.add(new Presence(LocalDate.of(1992, Month.APRIL, 5), "Absent"));
+        
+        ObservableList data = FXCollections.observableArrayList(list);
+        return data;
+    }
+    
+    public Presence createPresence(Presence p) throws SQLException{
+        return aapl.createPresence(p);
     }
     
     public List<Student> getAllStudents(){

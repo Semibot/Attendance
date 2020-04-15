@@ -24,12 +24,12 @@ public class AAModel{
         aasl = new AAStudentLogic();
     }
     
-    public ObservableList<Presence> getPresenceData(){
-        ObservableList<Presence> presence = FXCollections.observableArrayList();
-        presence.add(new Presence(LocalDate.of(1980, Month.APRIL, 6), "Present"));
-        presence.add(new Presence(LocalDate.of(1992, Month.APRIL, 5), "Absent"));
-        presence.add(new Presence(LocalDate.of(1988, Month.FEBRUARY, 16), "Absent"));
-        return presence;
+    public ObservableList getPresenceData(){
+        ObservableList<Presence> data = FXCollections.observableArrayList();
+        data.add(new Presence(LocalDate.of(1980, Month.APRIL, 6), "Present"));
+        data.add(new Presence(LocalDate.of(1992, Month.APRIL, 5), "Absent"));
+        data.add(new Presence(LocalDate.of(1988, Month.FEBRUARY, 16), "Absent"));
+        return data;
     }
     
     public Presence createPresence(Presence p) throws SQLException{

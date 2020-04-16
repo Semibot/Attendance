@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
  * @author Daniel
  */
 public class AAModel{
+    private final ObservableList data = getPresenceData();
     private AAPresenceLogic aapl;
     private AAStudentLogic aasl;
     

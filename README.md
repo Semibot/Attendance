@@ -1,1 +1,1 @@
-# Attendance
+# Attendance Automation project

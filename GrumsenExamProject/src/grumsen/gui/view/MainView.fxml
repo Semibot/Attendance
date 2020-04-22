@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grumsen.gui.controller.MainViewController">
+   <children>
+      <SplitPane dividerPositions="0.22779369627507162" layoutX="208.0" layoutY="152.0" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="131.0">
+               <children>
+                  <JFXButton layoutX="14.0" layoutY="218.0" onAction="#handleDashboardBtnAction" text="Dashboard" AnchorPane.leftAnchor="10.0" />
+                  <JFXButton layoutX="15.0" layoutY="270.0" onAction="#handleCustomersBtnAction" text="Customers" AnchorPane.leftAnchor="10.0" />
+                  <JFXButton layoutX="10.0" layoutY="320.0" onAction="#handleStatisticsBtnAction" text="Statistics" AnchorPane.leftAnchor="10.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <JFXListView fx:id="projectListview" layoutX="2.0" layoutY="14.0" prefHeight="355.0" prefWidth="273.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <JFXTextField fx:id="textField" layoutX="14.0" layoutY="453.0" prefHeight="31.0" prefWidth="412.0" promptText="Add a new project here:" />
+                  <JFXButton fx:id="addBtn" layoutX="463.0" layoutY="453.0" onAction="#handleAddBtnAction" text="Add" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

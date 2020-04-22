@@ -20,7 +20,7 @@ public class MainViewController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        
+        System.out.println("Hello world");
     }
     
     @FXML

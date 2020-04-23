@@ -12,6 +12,19 @@ import javafx.beans.property.StringProperty;
 public class User{
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty name = new SimpleStringProperty();
+    private final IntegerProperty projectId = new SimpleIntegerProperty();
+    
+    public int getProjectId(){
+        return projectId.get();
+    }
+    
+    public void setProjectId(int value){
+        projectId.set(value);
+    }
+    
+    public IntegerProperty projectIdProperty(){
+        return projectId;
+    }
     
     public String getName(){
         return name.get();

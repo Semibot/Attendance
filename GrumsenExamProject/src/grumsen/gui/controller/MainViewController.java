@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  * @author Daniel
  */
 public class MainViewController implements Initializable{
-    @FXML private JFXListView<String> projectListview;
+    @FXML private JFXListView<Project> projectListview;
     @FXML private JFXTextField textField;
     @FXML private JFXButton addBtn;
     

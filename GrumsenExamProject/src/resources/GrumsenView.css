@@ -1,0 +1,52 @@
+/* 
+    Created on : 29-Apr-2020, 20:15:51
+    Author     : Daniel
+*/
+
+#anchorPane{
+    -fx-background-color: #6666ff;
+}
+
+#createUserBtn{
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+#createCustomerBtn{
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+#createProjectBtn{
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+#projectsBtn{
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+#customersBtn{
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+#statisticsBtn{
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+#projectListview{
+    
+}
+
+#textField{
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+
+#addBtn{
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}

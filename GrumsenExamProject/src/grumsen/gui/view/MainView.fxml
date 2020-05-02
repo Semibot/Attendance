@@ -10,18 +10,21 @@
    <children>
       <SplitPane dividerPositions="0.20773638968481375" layoutX="208.0" layoutY="152.0" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="131.0">
+          <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="131.0" stylesheets="@../../../resources/GrumsenView.css">
                <children>
-                  <JFXButton layoutX="14.0" layoutY="218.0" onAction="#handleDashboardBtnAction" text="Dashboard" AnchorPane.leftAnchor="10.0" />
-                  <JFXButton layoutX="15.0" layoutY="270.0" onAction="#handleCustomersBtnAction" text="Customers" AnchorPane.leftAnchor="10.0" />
-                  <JFXButton layoutX="10.0" layoutY="320.0" onAction="#handleStatisticsBtnAction" text="Statistics" AnchorPane.leftAnchor="10.0" />
+                  <JFXButton fx:id="projectsBtn" buttonType="RAISED" layoutX="2.0" layoutY="134.0" onAction="#handleProjectsBtnAction" stylesheets="@../../../resources/GrumsenView.css" text="Projects" AnchorPane.leftAnchor="2.0" />
+                  <JFXButton fx:id="customersBtn" buttonType="RAISED" layoutX="2.0" layoutY="181.0" onAction="#handleCustomersBtnAction" stylesheets="@../../../resources/GrumsenView.css" text="Customers" AnchorPane.leftAnchor="2.0" />
+                  <JFXButton fx:id="statisticsBtn" buttonType="RAISED" layoutX="2.0" layoutY="230.0" onAction="#handleStatisticsBtnAction" stylesheets="@../../../resources/GrumsenView.css" text="Statistics" AnchorPane.leftAnchor="2.0" />
+                  <JFXButton fx:id="createProjectBtn" buttonType="RAISED" layoutX="2.0" layoutY="398.0" stylesheets="@../../../resources/GrumsenView.css" text="Create project" AnchorPane.leftAnchor="2.0" />
+                  <JFXButton fx:id="createCustomerBtn" buttonType="RAISED" layoutX="2.0" layoutY="351.0" stylesheets="@../../../resources/GrumsenView.css" text="Create customer" AnchorPane.leftAnchor="2.0" />
+                  <JFXButton fx:id="createUserBtn" buttonType="RAISED" layoutX="2.0" layoutY="304.0" stylesheets="@../../../resources/GrumsenView.css" text="Create user" AnchorPane.leftAnchor="2.0" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" stylesheets="@../../../resources/GrumsenView.css">
                <children>
-                  <JFXListView fx:id="projectListview" layoutX="2.0" layoutY="14.0" prefHeight="355.0" prefWidth="273.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <JFXTextField fx:id="textField" layoutX="14.0" layoutY="453.0" prefHeight="31.0" prefWidth="412.0" promptText="Add a new project here:" />
-                  <JFXButton fx:id="addBtn" layoutX="463.0" layoutY="453.0" onAction="#handleAddBtnAction" text="Add" />
+                  <JFXListView fx:id="projectListview" layoutX="2.0" layoutY="14.0" prefHeight="355.0" prefWidth="273.0" stylesheets="@../../../resources/GrumsenView.css" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <JFXTextField fx:id="textField" layoutX="14.0" layoutY="453.0" prefHeight="31.0" prefWidth="412.0" promptText="Add a new project here:" stylesheets="@../../../resources/GrumsenView.css" />
+                  <JFXButton fx:id="addBtn" layoutX="463.0" layoutY="453.0" onAction="#handleAddBtnAction" stylesheets="@../../../resources/GrumsenView.css" text="Add" />
                </children>
             </AnchorPane>
         </items>

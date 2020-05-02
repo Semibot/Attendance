@@ -16,10 +16,11 @@ public class PersonDAO{
     
     public Person createPerson(int id, Person p) throws SQLException{
         try(Connection conn = dbConnect.getConnection()){
-            String sql = "INSERT INTO Person(name) VALUES(?)";
+            String sql = "INSERT INTO Person(name, role) VALUES(?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, p.getName());
+            pstmt.setString(2, p.getRole());
             
             int createdRows = pstmt.executeUpdate();
             

@@ -2,7 +2,6 @@ package grumsen.gui.model;
 
 import grumsen.be.Admin;
 import grumsen.be.Customer;
-import grumsen.be.Person;
 import grumsen.be.Project;
 import grumsen.be.User;
 import grumsen.bll.GrumsenLogic;
@@ -14,11 +13,6 @@ import java.util.List;
  * @author Daniel
  */
 public class GrumsenModel{
-    
-    public Person createPerson(Person p) throws SQLException{
-        GrumsenLogic persongl = new GrumsenLogic();
-        return persongl.createPerson(p);
-    }
     
     public Admin createAdmin(Admin a) throws SQLException{
         GrumsenLogic admingl = new GrumsenLogic();

@@ -23,7 +23,7 @@ public class ProjectDAO{
     public Project createProject(int id, Project p) throws SQLException{
         try(Connection conn = dbConnect.getConnection()){
             String sql = "INSERT INTO Project(name, invoiceable,"
-               +"logHours, notes, userId, customerId)";
+               +"logHours, notes, userId, customerId, hourlyPrice) VALUES(?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, p.getName());
@@ -32,6 +32,7 @@ public class ProjectDAO{
             pstmt.setString(4, p.getNotes());
             pstmt.setInt(5, p.getUserId());
             pstmt.setInt(6, p.getCustomerId());
+            pstmt.setDouble(7, p.getHourlyPrice());
             
             int createdRows = pstmt.executeUpdate();
             
@@ -64,8 +65,9 @@ public class ProjectDAO{
                 String notes = rs.getString("notes");
                 int userId = rs.getInt("userId");
                 int customerId = rs.getInt("customerId");
+                double hourlyPrice = rs.getDouble("hourlyPrice");
                 Project p = new Project(id, name, invoiceable,
-                        logHours, notes, userId, customerId);
+                        logHours, notes, userId, customerId, hourlyPrice);
                 projects.add(p);
             }
         }catch (SQLServerException ex){

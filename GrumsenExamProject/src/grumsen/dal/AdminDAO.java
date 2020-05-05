@@ -16,11 +16,11 @@ public class AdminDAO{
     
     public Admin createAdmin(int id, Admin a) throws SQLException{
         try(Connection conn = dbConnect.getConnection()){
-            String sql = "INSERT INTO Admin(projectId, hourlyPrice) VALUES(?,?)";
+            String sql = "INSERT INTO AdminType(name, projectId) VALUES(?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, a.getProjectId());
-            pstmt.setDouble(2, a.getHourlyPrice());
+            pstmt.setString(1, a.getName());
+            pstmt.setInt(2, a.getProjectId());
             
             int createdRows = pstmt.executeUpdate();
             

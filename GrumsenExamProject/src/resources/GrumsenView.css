@@ -3,50 +3,24 @@
     Author     : Daniel
 */
 
-#anchorPane{
+AnchorPane{
     -fx-background-color: #6666ff;
 }
 
-#createUserBtn{
+JFXButton{
     -fx-text-fill: white;
     -fx-border-color: white;
 }
 
-#createCustomerBtn{
+Label{
     -fx-text-fill: white;
-    -fx-border-color: white;
 }
 
-#createProjectBtn{
-    -fx-text-fill: white;
-    -fx-border-color: white;
-}
-
-#projectsBtn{
-    -fx-text-fill: white;
-    -fx-border-color: white;
-}
-
-#customersBtn{
-    -fx-text-fill: white;
-    -fx-border-color: white;
-}
-
-#statisticsBtn{
-    -fx-text-fill: white;
-    -fx-border-color: white;
-}
-
-#projectListview{
-    
-}
-
-#textField{
+JFXTextField{
     -fx-prompt-text-fill: white;
     -fx-text-fill: white;
 }
 
-#addBtn{
+JFXRadioButton{
     -fx-text-fill: white;
-    -fx-border-color: white;
 }

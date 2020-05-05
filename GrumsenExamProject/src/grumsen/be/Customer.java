@@ -10,9 +10,15 @@ import javafx.beans.property.StringProperty;
  * @author Daniel
  */
 public class Customer{
-    private final IntegerProperty id = new SimpleIntegerProperty();
-    private final StringProperty name = new SimpleStringProperty();
-    private final IntegerProperty projectId = new SimpleIntegerProperty();
+    private final IntegerProperty id;
+    private final StringProperty name;
+    private final IntegerProperty projectId;
+    
+    public Customer(int id, String name, int projectId){
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.projectId = new SimpleIntegerProperty(projectId);
+    }
     
     public int getProjectId(){
         return projectId.get();

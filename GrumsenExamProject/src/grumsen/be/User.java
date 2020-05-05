@@ -10,8 +10,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class User extends Person{
     private final IntegerProperty projectId;
     
-    public User(int id, String name, String role, int projectId){
-        super(id, name, role);
+    public User(int id, String name, int projectId){
+        super(id, name);
         this.projectId = new SimpleIntegerProperty(projectId);
     }
     

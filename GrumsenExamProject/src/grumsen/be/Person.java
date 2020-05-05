@@ -12,24 +12,10 @@ import javafx.beans.property.StringProperty;
 public class Person{
     private final IntegerProperty id;
     private final StringProperty name;
-    private final StringProperty role;
     
-    public Person(int id, String name, String role){
+    public Person(int id, String name){
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.role = new SimpleStringProperty(role);
-    }
-    
-    public String getRole(){
-        return role.get();
-    }
-    
-    public void setRole(String value){
-        role.set(value);
-    }
-    
-    public StringProperty roleProperty(){
-        return role;
     }
     
     public String getName(){

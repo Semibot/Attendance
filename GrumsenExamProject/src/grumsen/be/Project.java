@@ -2,9 +2,11 @@ package grumsen.be;
 
 import java.sql.Time;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,10 +24,11 @@ public class Project{
     private final StringProperty notes;
     private final IntegerProperty userId;
     private final IntegerProperty customerId;
+    private final DoubleProperty hourlyPrice;
     
-    public Project(int id, String name,
-           boolean invoiceable, Time logHours,
-           String notes, int userId, int customerId){
+    public Project(int id, String name, boolean invoiceable,
+            Time logHours, String notes, int userId,
+            int customerId, double hourlyPrice){
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.invoiceable = new SimpleBooleanProperty(invoiceable);
@@ -33,6 +36,19 @@ public class Project{
         this.notes = new SimpleStringProperty(notes);
         this.userId = new SimpleIntegerProperty(userId);
         this.customerId = new SimpleIntegerProperty(customerId);
+        this.hourlyPrice = new SimpleDoubleProperty(hourlyPrice);
+    }
+    
+    public double getHourlyPrice(){
+        return hourlyPrice.get();
+    }
+    
+    public void setHourlyPrice(double value){
+        hourlyPrice.set(value);
+    }
+    
+    public DoubleProperty hourlyPriceProperty(){
+        return hourlyPrice;
     }
     
     public int getCustomerId(){
@@ -121,7 +137,6 @@ public class Project{
     
     @Override
     public String toString(){
-        return "Project{" + "name=" + name + ", invoiceable=" + invoiceable + ", logHours=" + logHours + '}';
-        //return name +", "+ invoiceable +", "+ logHours;
+        return name +", "+ invoiceable +", "+ logHours;
     }
 }

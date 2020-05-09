@@ -25,16 +25,18 @@ public class PersonViewController{
     
     @FXML
     private void handleSavePersonBtn(ActionEvent e){
-        if(tgPerson.getSelectedToggle().equals(personUserRB)){
-            User u = new User(0,
-                    personTextfield.getText(), 0);
-            parent.addUser(u);
-            
-        }else if(tgPerson.getSelectedToggle().equals(personAdminRB)){
-            Admin a = new Admin(0,
-                    personTextfield.getText(), 0);
-            parent.addAdmin(a);
-            
+        if(!personTextfield.getText().isEmpty()){
+            if(tgPerson.getSelectedToggle().equals(personUserRB)){
+                User u = new User(0,
+                     personTextfield.getText(), 0);
+                parent.addUser(u);
+                
+            }else if(tgPerson.getSelectedToggle().equals(personAdminRB)){
+                Admin a = new Admin(0,
+                     personTextfield.getText(), 0);
+                parent.addAdmin(a);
+                
+            }
         }
         Stage sp = (Stage)savePersonBtn.getScene().getWindow();
         sp.close();

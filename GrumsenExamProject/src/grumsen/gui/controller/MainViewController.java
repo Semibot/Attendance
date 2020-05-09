@@ -43,6 +43,21 @@ public class MainViewController implements Initializable{
     }
     
     @FXML
+    private void handleCreateProjectBtn(ActionEvent e) throws IOException{
+        Stage createProjectWindow = new Stage();
+        createProjectWindow.initModality(Modality.NONE);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/grumsen/gui/view/ProjectView.fxml"));
+        Parent root = loader.load();
+        ProjectViewController prvc = loader.getController();
+        prvc.setParentWindowController(this);
+        
+        Scene scene = new Scene(root);
+        createProjectWindow.setTitle("Create Project View");
+        createProjectWindow.setScene(scene);
+        createProjectWindow.showAndWait();
+    }
+    
+    @FXML
     private void handleCreateCustomerBtn(ActionEvent e) throws IOException{
         Stage createCustomerWindow = new Stage();
         createCustomerWindow.initModality(Modality.NONE);

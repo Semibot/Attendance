@@ -1,11 +1,16 @@
 package grumsen.dal;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import grumsen.be.Admin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,5 +42,26 @@ public class AdminDAO{
             }
         }
         return a;
+    }
+    
+    public List<Admin> getAllAdmins(){
+        List<Admin> admins = new ArrayList();
+        try(Connection conn = dbConnect.getConnection()){
+            String sql = "SELECT * FROM AdminType";
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int projectId = rs.getInt("projectId");
+                Admin a = new Admin(id, name, projectId);
+                admins.add(a);
+            }
+        }catch (SQLServerException ex){
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (SQLException ex){
+            Logger.getLogger(AdminDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return admins;
     }
 }

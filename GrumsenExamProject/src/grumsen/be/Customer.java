@@ -55,4 +55,9 @@ public class Customer{
     public IntegerProperty idProperty(){
         return id;
     }
+    
+    @Override
+    public String toString(){
+        return getName();
+    }
 }

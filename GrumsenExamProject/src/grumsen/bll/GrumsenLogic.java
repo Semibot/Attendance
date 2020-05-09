@@ -22,14 +22,29 @@ public class GrumsenLogic{
         return adao.createAdmin(0, a);
     }
     
+    public List<Admin> getAllAdmins(){
+        AdminDAO adao = new AdminDAO();
+        return adao.getAllAdmins();
+    }
+    
     public Customer createCustomer(Customer c) throws SQLException{
         CustomerDAO cdao = new CustomerDAO();
         return cdao.createCustomer(0, c);
     }
     
+    public List<Customer> getAllCustomers(){
+        CustomerDAO cdao = new CustomerDAO();
+        return cdao.getAllCustomers();
+    }
+    
     public User createUser(User u) throws SQLException{
         UserDAO udao = new UserDAO();
         return udao.createUser(0, u);
+    }
+    
+    public List<User> getAllUsers(){
+        UserDAO udao = new UserDAO();
+        return udao.getAllUsers();
     }
     
     public Project createProject(Project p) throws SQLException{

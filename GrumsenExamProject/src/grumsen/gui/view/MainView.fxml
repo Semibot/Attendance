@@ -15,7 +15,7 @@
                   <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="140.0" onAction="#handleProjectsBtnAction" stylesheets="@../../../resources/GrumsenView.css" text="Projects" AnchorPane.leftAnchor="2.0" />
                   <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="187.0" onAction="#handleCustomersBtnAction" stylesheets="@../../../resources/GrumsenView.css" text="Customers" AnchorPane.leftAnchor="2.0" />
                   <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="236.0" onAction="#handleStatisticsBtnAction" stylesheets="@../../../resources/GrumsenView.css" text="Statistics" AnchorPane.leftAnchor="2.0" />
-                  <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="398.0" stylesheets="@../../../resources/GrumsenView.css" text="Create project" AnchorPane.leftAnchor="2.0" />
+                  <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="398.0" onAction="#handleCreateProjectBtn" stylesheets="@../../../resources/GrumsenView.css" text="Create project" AnchorPane.leftAnchor="2.0" />
                   <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="351.0" onAction="#handleCreateCustomerBtn" stylesheets="@../../../resources/GrumsenView.css" text="Create customer" AnchorPane.leftAnchor="2.0" />
                   <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="304.0" onAction="#handleCreatePersonBtn" stylesheets="@../../../resources/GrumsenView.css" text="Create person" AnchorPane.leftAnchor="2.0" />
                </children>

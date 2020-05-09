@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -29,7 +30,7 @@ public class ProjectDAO{
             pstmt.setString(1, p.getName());
             pstmt.setBoolean(2, p.isInvoiceable());
             pstmt.setTime(3, p.getLogHours());
-            pstmt.setString(4, p.getNotes());
+            pstmt.setString(4, String.valueOf(p.getNotes()));
             pstmt.setInt(5, p.getUserId());
             pstmt.setInt(6, p.getCustomerId());
             pstmt.setDouble(7, p.getHourlyPrice());
@@ -62,7 +63,7 @@ public class ProjectDAO{
                 String name = rs.getString("name");
                 Boolean invoiceable = rs.getBoolean("invoiceable");
                 Time logHours = rs.getTime("logHours");
-                String notes = rs.getString("notes");
+                Text notes = Text.class.cast(rs.getString("notes"));
                 int userId = rs.getInt("userId");
                 int customerId = rs.getInt("customerId");
                 double hourlyPrice = rs.getDouble("hourlyPrice");

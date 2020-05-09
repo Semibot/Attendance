@@ -19,14 +19,29 @@ public class GrumsenModel{
         return admingl.createAdmin(a);
     }
     
+    public List<Admin> getAllAdmins(){
+        GrumsenLogic admingl = new GrumsenLogic();
+        return admingl.getAllAdmins();
+    }
+    
     public Customer createCustomer(Customer c) throws SQLException{
         GrumsenLogic customergl = new GrumsenLogic();
         return customergl.createCustomer(c);
     }
     
+    public List<Customer> getAllCustomers(){
+        GrumsenLogic customergl = new GrumsenLogic();
+        return customergl.getAllCustomers();
+    }
+    
     public User createUser(User u) throws SQLException{
         GrumsenLogic usergl = new GrumsenLogic();
         return usergl.createUser(u);
+    }
+    
+    public List<User> getAllUsers(){
+        GrumsenLogic usergl = new GrumsenLogic();
+        return usergl.getAllUsers();
     }
     
     public Project createProject(Project p) throws SQLException{

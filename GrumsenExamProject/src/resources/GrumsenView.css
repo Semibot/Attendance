@@ -21,6 +21,11 @@ JFXTextField{
     -fx-text-fill: white;
 }
 
+JFXComboBox{
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
 JFXRadioButton{
     -fx-text-fill: white;
 }

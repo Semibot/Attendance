@@ -26,4 +26,9 @@ public class User extends Person{
     public IntegerProperty projectIdProperty(){
         return projectId;
     }
+    
+    @Override
+    public String toString(){
+        return getName();
+    }
 }

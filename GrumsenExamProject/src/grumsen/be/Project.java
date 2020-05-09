@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -21,19 +22,19 @@ public class Project{
     private final StringProperty name;
     private final BooleanProperty invoiceable;
     private final ObjectProperty<Time> logHours;
-    private final StringProperty notes;
+    private final ObjectProperty<Text> notes;
     private final IntegerProperty userId;
     private final IntegerProperty customerId;
     private final DoubleProperty hourlyPrice;
     
     public Project(int id, String name, boolean invoiceable,
-            Time logHours, String notes, int userId,
+            Time logHours, Text notes, int userId,
             int customerId, double hourlyPrice){
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.invoiceable = new SimpleBooleanProperty(invoiceable);
         this.logHours = new SimpleObjectProperty<>(logHours);
-        this.notes = new SimpleStringProperty(notes);
+        this.notes = new SimpleObjectProperty<>(notes);
         this.userId = new SimpleIntegerProperty(userId);
         this.customerId = new SimpleIntegerProperty(customerId);
         this.hourlyPrice = new SimpleDoubleProperty(hourlyPrice);
@@ -75,15 +76,15 @@ public class Project{
         return userId;
     }
     
-    public String getNotes(){
+    public Text getNotes(){
         return notes.get();
     }
     
-    public void setNotes(String value){
+    public void setNotes(Text value){
         notes.set(value);
     }
     
-    public StringProperty notesProperty(){
+    public ObjectProperty<Text> notesProperty(){
         return notes;
     }
     

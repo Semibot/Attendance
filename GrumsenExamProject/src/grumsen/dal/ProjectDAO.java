@@ -7,33 +7,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.text.Text;
 
 /**
  *
  * @author Daniel
  */
 public class ProjectDAO{
-    DBConnector dbConnect = new DBConnector();
+    private DBConnector dbConnect = new DBConnector();
     
     public Project createProject(int id, Project p) throws SQLException{
         try(Connection conn = dbConnect.getConnection()){
             String sql = "INSERT INTO Project(name, invoiceable,"
-               +"logHours, notes, userId, customerId, hourlyPrice) VALUES(?,?,?,?,?,?,?)";
+               +"logHours, notes, hourlyPrice, personId, customerId) VALUES(?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, p.getName());
-            pstmt.setBoolean(2, p.isInvoiceable());
-            pstmt.setTime(3, p.getLogHours());
-            pstmt.setString(4, String.valueOf(p.getNotes()));
-            pstmt.setInt(5, p.getUserId());
-            pstmt.setInt(6, p.getCustomerId());
-            pstmt.setDouble(7, p.getHourlyPrice());
+            pstmt.setString(2, p.getInvoiceable());
+            pstmt.setString(3, p.getLogHours());
+            pstmt.setString(4, p.getNotes());
+            pstmt.setInt(5, p.getHourlyPrice());
+            pstmt.setInt(6, p.getPersonId());
+            pstmt.setInt(7, p.getCustomerId());
             
             int createdRows = pstmt.executeUpdate();
             
@@ -59,16 +57,16 @@ public class ProjectDAO{
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
-                int id = rs.getInt("id");
+                int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                Boolean invoiceable = rs.getBoolean("invoiceable");
-                Time logHours = rs.getTime("logHours");
-                Text notes = Text.class.cast(rs.getString("notes"));
-                int userId = rs.getInt("userId");
+                String invoiceable = rs.getString("invoiceable");
+                String logHours = rs.getString("logHours");
+                String notes = rs.getString("notes");
+                int hourlyPrice = rs.getInt("hourlyPrice");
+                int personId = rs.getInt("personId");
                 int customerId = rs.getInt("customerId");
-                double hourlyPrice = rs.getDouble("hourlyPrice");
-                Project p = new Project(id, name, invoiceable,
-                        logHours, notes, userId, customerId, hourlyPrice);
+                Project p = new Project(ids, name, invoiceable,
+                        logHours, notes, hourlyPrice, personId, customerId);
                 projects.add(p);
             }
         }catch (SQLServerException ex){

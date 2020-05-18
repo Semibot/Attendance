@@ -1,17 +1,9 @@
 package grumsen.be;
 
-import java.sql.Time;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.text.Text;
 
 /**
  *
@@ -20,35 +12,35 @@ import javafx.scene.text.Text;
 public class Project{
     private final IntegerProperty id;
     private final StringProperty name;
-    private final BooleanProperty invoiceable;
-    private final ObjectProperty<Time> logHours;
-    private final ObjectProperty<Text> notes;
-    private final IntegerProperty userId;
+    private final StringProperty invoiceable;
+    private final StringProperty logHours;
+    private final StringProperty notes;
+    private final IntegerProperty hourlyPrice;
+    private final IntegerProperty personId;
     private final IntegerProperty customerId;
-    private final DoubleProperty hourlyPrice;
     
-    public Project(int id, String name, boolean invoiceable,
-            Time logHours, Text notes, int userId,
-            int customerId, double hourlyPrice){
+    public Project(int id, String name, String invoiceable,
+            String logHours, String notes, int hourlyPrice,
+            int personId, int customerId){
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.invoiceable = new SimpleBooleanProperty(invoiceable);
-        this.logHours = new SimpleObjectProperty<>(logHours);
-        this.notes = new SimpleObjectProperty<>(notes);
-        this.userId = new SimpleIntegerProperty(userId);
+        this.invoiceable = new SimpleStringProperty(invoiceable);
+        this.logHours = new SimpleStringProperty(logHours);
+        this.notes = new SimpleStringProperty(notes);
+        this.hourlyPrice = new SimpleIntegerProperty(hourlyPrice);
+        this.personId = new SimpleIntegerProperty(personId);
         this.customerId = new SimpleIntegerProperty(customerId);
-        this.hourlyPrice = new SimpleDoubleProperty(hourlyPrice);
     }
     
-    public double getHourlyPrice(){
+    public int getHourlyPrice(){
         return hourlyPrice.get();
     }
     
-    public void setHourlyPrice(double value){
+    public void setHourlyPrice(int value){
         hourlyPrice.set(value);
     }
     
-    public DoubleProperty hourlyPriceProperty(){
+    public IntegerProperty hourlyPriceProperty(){
         return hourlyPrice;
     }
     
@@ -64,51 +56,51 @@ public class Project{
         return customerId;
     }
     
-    public int getUserId(){
-        return userId.get();
+    public int getPersonId(){
+        return personId.get();
     }
     
-    public void setUserId(int value){
-        userId.set(value);
+    public void setPersonId(int value){
+        personId.set(value);
     }
     
-    public IntegerProperty userIdProperty(){
-        return userId;
+    public IntegerProperty personIdProperty(){
+        return personId;
     }
     
-    public Text getNotes(){
+    public String getNotes(){
         return notes.get();
     }
     
-    public void setNotes(Text value){
+    public void setNotes(String value){
         notes.set(value);
     }
     
-    public ObjectProperty<Text> notesProperty(){
+    public StringProperty notesProperty(){
         return notes;
     }
     
-    public Time getLogHours(){
+    public String getLogHours(){
         return logHours.get();
     }
     
-    public void setLogHours(Time value){
+    public void setLogHours(String value){
         logHours.set(value);
     }
     
-    public ObjectProperty<Time> logHoursProperty(){
+    public StringProperty logHoursProperty(){
         return logHours;
     }
     
-    public boolean isInvoiceable(){
+    public String getInvoiceable(){
         return invoiceable.get();
     }
     
-    public void setInvoiceable(boolean value){
+    public void setInvoiceable(String value){
         invoiceable.set(value);
     }
     
-    public BooleanProperty invoiceableProperty(){
+    public StringProperty invoiceableProperty(){
         return invoiceable;
     }
     
@@ -138,6 +130,6 @@ public class Project{
     
     @Override
     public String toString(){
-        return name +", "+ invoiceable +", "+ logHours;
+        return getName();
     }
 }

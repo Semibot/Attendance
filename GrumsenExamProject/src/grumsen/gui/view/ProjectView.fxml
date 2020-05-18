@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" stylesheets="@../../../resources/GrumsenView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grumsen.gui.controller.ProjectViewController">
    <children>
       <Label layoutX="251.0" layoutY="14.0" text="Create Project">
@@ -17,26 +16,26 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <Label layoutX="122.0" layoutY="86.0" text="Project name:" />
+      <Label layoutX="122.0" layoutY="80.0" text="Project name:" />
       <Label layoutX="122.0" layoutY="138.0" text="Invoiceable:" />
-      <JFXTextField fx:id="nameProjectField" layoutX="302.0" layoutY="81.0" prefHeight="31.0" prefWidth="199.0" promptText="Enter name" />
-      <JFXRadioButton fx:id="trueProjectRB" layoutX="321.0" layoutY="138.0" selected="true" text="True">
+      <JFXTextField fx:id="nameProjectField" layoutX="302.0" layoutY="75.0" prefHeight="31.0" prefWidth="199.0" promptText="Enter name" />
+      <Label layoutX="122.0" layoutY="239.0" text="Notes:" />
+      <Label layoutX="122.0" layoutY="294.0" text="Person on project:" />
+      <Label layoutX="122.0" layoutY="354.0" text="Project for customer:" />
+      <Label layoutX="122.0" layoutY="413.0" text="Hourly price:" />
+      <JFXTextField fx:id="priceProjectField" layoutX="302.0" layoutY="408.0" prefHeight="31.0" prefWidth="199.0" promptText="Enter hourly price" />
+      <JFXButton fx:id="cancelProjectBtn" layoutX="620.0" layoutY="456.0" onAction="#handleCancelProjectBtn" text="Cancel" />
+      <JFXButton fx:id="saveProjectBtn" layoutX="556.0" layoutY="456.0" onAction="#handleSaveProjectBtn" text="Save" />
+      <JFXComboBox fx:id="personProjectCB" layoutX="302.0" layoutY="289.0" prefHeight="31.0" prefWidth="169.0" promptText="Choose person" stylesheets="@../../../resources/GrumsenView.css" />
+      <JFXComboBox fx:id="customerProjectCB" layoutX="302.0" layoutY="349.0" prefHeight="31.0" prefWidth="169.0" promptText="Choose customer" stylesheets="@../../../resources/GrumsenView.css" />
+      <Label layoutX="122.0" layoutY="186.0" text="Log hours:" />
+      <JFXTextField fx:id="logProjectField" layoutX="302.0" layoutY="181.0" promptText="Log Hours" />
+      <JFXTextField fx:id="notesProjectField" layoutX="302.0" layoutY="234.0" prefHeight="31.0" prefWidth="169.0" promptText="Add notes" />
+      <JFXRadioButton fx:id="trueProjectRB" layoutX="302.0" layoutY="138.0" text="True">
          <toggleGroup>
             <ToggleGroup fx:id="tgProject" />
          </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="falseProjectRB" layoutX="421.0" layoutY="138.0" text="False" toggleGroup="$tgProject" />
-      <Label layoutX="122.0" layoutY="188.0" text="Logged hours:" />
-      <JFXTextField fx:id="hoursProjectField" layoutX="302.0" layoutY="183.0" prefHeight="31.0" prefWidth="199.0" promptText="Enter amount" />
-      <Label layoutX="122.0" layoutY="241.0" text="Notes:" />
-      <Label layoutX="122.0" layoutY="296.0" text="Person on project:" />
-      <Label layoutX="122.0" layoutY="352.0" text="Project for customer:" />
-      <Label layoutX="122.0" layoutY="404.0" text="Hourly price:" />
-      <JFXTextField fx:id="priceProjectField" layoutX="302.0" layoutY="399.0" prefHeight="31.0" prefWidth="199.0" promptText="Enter hourly price" />
-      <JFXButton fx:id="cancelProjectBtn" layoutX="620.0" layoutY="456.0" onAction="#handleCancelProjectBtn" text="Cancel" />
-      <JFXButton fx:id="saveProjectBtn" layoutX="556.0" layoutY="456.0" onAction="#handleSaveProjectBtn" text="Save" />
-      <JFXTextField fx:id="notesProjectField" layoutX="302.0" layoutY="236.0" promptText="Add notes" />
-      <JFXComboBox fx:id="personProjectCB" layoutX="302.0" layoutY="291.0" prefHeight="31.0" prefWidth="169.0" promptText="Choose person" stylesheets="@../../../resources/GrumsenView.css" />
-      <JFXComboBox fx:id="customerProjectCB" layoutX="302.0" layoutY="347.0" prefHeight="31.0" prefWidth="169.0" promptText="Choose customer" stylesheets="@../../../resources/GrumsenView.css" />
+      <JFXRadioButton fx:id="falseProjectRB" layoutX="409.0" layoutY="138.0" text="False" toggleGroup="$tgProject" />
    </children>
 </AnchorPane>

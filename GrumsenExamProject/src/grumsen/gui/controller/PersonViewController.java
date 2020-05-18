@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import grumsen.be.Admin;
+import grumsen.be.Person;
 import grumsen.be.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,15 +28,14 @@ public class PersonViewController{
     private void handleSavePersonBtn(ActionEvent e){
         if(!personTextfield.getText().isEmpty()){
             if(tgPerson.getSelectedToggle().equals(personUserRB)){
-                User u = new User(0,
+                Person u = new User(0,
                      personTextfield.getText(), 0);
-                parent.addUser(u);
+                parent.addUser((User)u);
                 
             }else if(tgPerson.getSelectedToggle().equals(personAdminRB)){
-                Admin a = new Admin(0,
+                Person a = new Admin(0,
                      personTextfield.getText(), 0);
-                parent.addAdmin(a);
-                
+                parent.addAdmin((Admin)a);
             }
         }
         Stage sp = (Stage)savePersonBtn.getScene().getWindow();

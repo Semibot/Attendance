@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author Daniel
  */
 public class CustomerDAO{
-    DBConnector dbConnect = new DBConnector();
+    private DBConnector dbConnect = new DBConnector();
     
     public Customer createCustomer(int id, Customer c) throws SQLException{
         try(Connection conn = dbConnect.getConnection()){

@@ -2,10 +2,12 @@ package grumsen.bll;
 
 import grumsen.be.Admin;
 import grumsen.be.Customer;
+import grumsen.be.Person;
 import grumsen.be.Project;
 import grumsen.be.User;
 import grumsen.dal.AdminDAO;
 import grumsen.dal.CustomerDAO;
+import grumsen.dal.PersonDAO;
 import grumsen.dal.ProjectDAO;
 import grumsen.dal.UserDAO;
 import java.sql.SQLException;
@@ -55,5 +57,15 @@ public class GrumsenLogic{
     public List<Project> getAllProjects(){
         ProjectDAO pdao = new ProjectDAO();
         return pdao.getAllProjects();
+    }
+    
+    public Person createPerson(Person p) throws SQLException{
+        PersonDAO pdao = new PersonDAO();
+        return pdao.createPerson(0, p);
+    }
+    
+    public List<Person> getAllPeople(){
+        PersonDAO pdao = new PersonDAO();
+        return pdao.getAllPeople();
     }
 }

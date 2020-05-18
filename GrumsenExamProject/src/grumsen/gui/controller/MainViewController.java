@@ -1,6 +1,5 @@
 package grumsen.gui.controller;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import grumsen.be.Admin;
@@ -34,12 +33,35 @@ public class MainViewController implements Initializable{
     private final ObservableList listProject = FXCollections.observableArrayList();
     @FXML private JFXListView<Project> projectListview;
     @FXML private JFXTextField textField;
-    @FXML private JFXButton addBtn;
     private GrumsenModel gm;
+    private ProjectViewController pvc;
     
     public MainViewController(){
-        projectListview = new JFXListView<>();
         gm = new GrumsenModel();
+        pvc = new ProjectViewController();
+    }
+    
+    @FXML
+    private void handleAddBtnAction(ActionEvent e) throws SQLException{
+        String mainProjectName = textField.getText();
+        
+        if(!textField.getText().isEmpty()){
+            listProject.add(mainProjectName);
+            projectListview.setItems(listProject);
+            textField.clear();
+            pvc.createProjectProjectView();
+        }
+    }
+    
+    public void addProject(Project p){
+        try{
+            Project project = gm.createProject(p);
+            projectListview.getItems().clear();
+            listProject.addAll(project);
+            projectListview.getItems().addAll(listProject);
+        }catch (SQLException ex){
+            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML
@@ -129,28 +151,6 @@ public class MainViewController implements Initializable{
         listProject.addAll(listp);
         projectListview.getItems().addAll(listProject);
     }
-    
-    @FXML
-    private void handleAddBtnAction(ActionEvent e){
-        String projectName = textField.getText();
-        
-        if(!projectName.isEmpty()){
-            listProject.add(projectName);
-            projectListview.setItems(listProject);
-            textField.clear();
-        }
-    }
-    
-    /*public void addProject(Project p){
-        try{
-            Project project = gm.createProject(p);
-            projectListview.getItems().clear();
-            listProject.addAll(project);
-            projectListview.getItems().addAll(listProject);
-        }catch (SQLException ex){
-            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
     
     @FXML
     private void handleProjectsBtnAction(ActionEvent e){

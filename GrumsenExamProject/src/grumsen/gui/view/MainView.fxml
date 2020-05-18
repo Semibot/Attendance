@@ -24,7 +24,7 @@
                <children>
                   <JFXListView fx:id="projectListview" layoutX="2.0" layoutY="14.0" prefHeight="355.0" prefWidth="273.0" stylesheets="@../../../resources/GrumsenView.css" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <JFXTextField fx:id="textField" layoutX="14.0" layoutY="453.0" prefHeight="31.0" prefWidth="412.0" promptText="Add a new project here:" stylesheets="@../../../resources/GrumsenView.css" />
-                  <JFXButton fx:id="addBtn" layoutX="463.0" layoutY="453.0" onAction="#handleAddBtnAction" stylesheets="@../../../resources/GrumsenView.css" text="Add" />
+                  <JFXButton layoutX="463.0" layoutY="453.0" onAction="#handleAddBtnAction" stylesheets="@../../../resources/GrumsenView.css" text="Add" />
                </children>
             </AnchorPane>
         </items>

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author Daniel
  */
 public class AdminDAO{
-    DBConnector dbConnect = new DBConnector();
+    private DBConnector dbConnect = new DBConnector();
     
     public Admin createAdmin(int id, Admin a) throws SQLException{
         try(Connection conn = dbConnect.getConnection()){

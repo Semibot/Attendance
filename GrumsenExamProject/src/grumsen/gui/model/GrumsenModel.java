@@ -2,6 +2,7 @@ package grumsen.gui.model;
 
 import grumsen.be.Admin;
 import grumsen.be.Customer;
+import grumsen.be.Person;
 import grumsen.be.Project;
 import grumsen.be.User;
 import grumsen.bll.GrumsenLogic;
@@ -52,5 +53,15 @@ public class GrumsenModel{
     public List<Project> getAllProjects(){
         GrumsenLogic pgl = new GrumsenLogic();
         return pgl.getAllProjects();
+    }
+    
+    public Person createPerson(Person p) throws SQLException{
+        GrumsenLogic persongl = new GrumsenLogic();
+        return persongl.createPerson(p);
+    }
+    
+    public List<Person> getAllPeople(){
+        GrumsenLogic pgl = new GrumsenLogic();
+        return pgl.getAllPeople();
     }
 }

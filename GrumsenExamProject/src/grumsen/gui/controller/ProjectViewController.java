@@ -49,24 +49,26 @@ public class ProjectViewController implements Initializable{
     
     @FXML
     private void handleSaveProjectBtn(ActionEvent e) throws ParseException{
-        if(tgProject.equals(trueProjectRB)){
-            Project p = new Project(0,
-                nameProjectField.getText(),
-                trueProjectRB.getText(),
-                logProjectField.getText(),
-                notesProjectField.getText(),
-                Integer.parseInt(priceProjectField.getText()),
-                getPersonId(), getCustomerId());
-            parent.addProject(p);
-        }else if(tgProject.equals(falseProjectRB)){
-            Project p = new Project(0,
-                nameProjectField.getText(),
-                falseProjectRB.getText(),
-                logProjectField.getText(),
-                notesProjectField.getText(),
-                Integer.parseInt(priceProjectField.getText()),
-                getPersonId(), getCustomerId());
-            parent.addProject(p);
+        if(!nameProjectField.getText().isEmpty()){
+            if(trueProjectRB.getText().equalsIgnoreCase("True")){
+                Project p = new Project(0,
+                    nameProjectField.getText(),
+                    trueProjectRB.getText(),
+                    logProjectField.getText(),
+                    notesProjectField.getText(),
+                    Integer.parseInt(priceProjectField.getText()),
+                    getPersonId(), getCustomerId());
+                parent.addProject(p);
+            }else if(falseProjectRB.getText().equalsIgnoreCase("False")){
+                Project p = new Project(0,
+                    nameProjectField.getText(),
+                    falseProjectRB.getText(),
+                    logProjectField.getText(),
+                    notesProjectField.getText(),
+                    Integer.parseInt(priceProjectField.getText()),
+                    getPersonId(), getCustomerId());
+                parent.addProject(p);
+            }
         }
         Stage sp = (Stage)saveProjectBtn.getScene().getWindow();
         sp.close();
@@ -81,7 +83,7 @@ public class ProjectViewController implements Initializable{
     public int getPersonId(){
         List<Person> pList = gm.getAllPeople();
         Map<Integer, String> map = new HashMap<>();
-        String name = (String)personProjectCB.getValue();
+        String name = String.valueOf(personProjectCB.getValue());
         
         for(Person p : pList){
             map.put(p.getId(), p.getName());
@@ -97,7 +99,7 @@ public class ProjectViewController implements Initializable{
     public int getCustomerId(){
         List<Customer> cList = gm.getAllCustomers();
         Map<Integer, String> map = new HashMap<>();
-        String customerName = (String)customerProjectCB.getValue();
+        String customerName = String.valueOf(customerProjectCB.getValue());
         
         for(Customer c : cList){
             map.put(c.getId(), c.getName());
@@ -108,17 +110,6 @@ public class ProjectViewController implements Initializable{
             }
         }
         return 0;
-    }
-    
-    public void createProjectProjectView(){
-        Project p = new Project(0,
-            nameProjectField.getText(),
-            trueProjectRB.getText(),
-            logProjectField.getText(),
-            notesProjectField.getText(),
-            Integer.parseInt(priceProjectField.getText()),
-            getPersonId(), getCustomerId());
-        parent.addProject(p);
     }
     
     private void createCustomerCBItems(){

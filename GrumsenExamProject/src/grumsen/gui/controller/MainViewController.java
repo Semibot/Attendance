@@ -43,13 +43,14 @@ public class MainViewController implements Initializable{
     
     @FXML
     private void handleAddBtnAction(ActionEvent e) throws SQLException{
-        String mainProjectName = textField.getText();
+        String projectName = textField.getText();
         
         if(!textField.getText().isEmpty()){
-            listProject.add(mainProjectName);
+            Project p = new Project(0, projectName,
+                    "True", "0", "", 375, 0, 0);
+            addProject(p);
             projectListview.setItems(listProject);
             textField.clear();
-            pvc.createProjectProjectView();
         }
     }
     

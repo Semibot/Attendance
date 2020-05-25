@@ -31,11 +31,10 @@
       <Label layoutX="122.0" layoutY="186.0" text="Log hours:" />
       <JFXTextField fx:id="logProjectField" layoutX="302.0" layoutY="181.0" promptText="Log Hours" />
       <JFXTextField fx:id="notesProjectField" layoutX="302.0" layoutY="234.0" prefHeight="31.0" prefWidth="169.0" promptText="Add notes" />
-      <JFXRadioButton fx:id="trueProjectRB" layoutX="302.0" layoutY="138.0" text="True">
+      <JFXRadioButton fx:id="falseProjectRB" layoutX="409.0" layoutY="138.0" text="False">
          <toggleGroup>
             <ToggleGroup fx:id="tgProject" />
-         </toggleGroup>
-      </JFXRadioButton>
-      <JFXRadioButton fx:id="falseProjectRB" layoutX="409.0" layoutY="138.0" text="False" toggleGroup="$tgProject" />
+         </toggleGroup></JFXRadioButton>
+      <JFXRadioButton fx:id="trueProjectRB" layoutX="302.0" layoutY="138.0" selected="true" text="True" toggleGroup="$tgProject" />
    </children>
 </AnchorPane>

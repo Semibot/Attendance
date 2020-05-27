@@ -21,7 +21,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 /**
@@ -31,7 +30,6 @@ import javafx.stage.Stage;
 public class ProjectViewController implements Initializable{
     private MainViewController parent;
     @FXML private JFXTextField nameProjectField;
-    @FXML private ToggleGroup tgProject;
     @FXML private JFXRadioButton trueProjectRB;
     @FXML private JFXRadioButton falseProjectRB;
     @FXML private JFXComboBox personProjectCB;

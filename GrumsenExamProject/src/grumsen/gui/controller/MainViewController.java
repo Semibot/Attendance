@@ -34,11 +34,9 @@ public class MainViewController implements Initializable{
     @FXML private JFXListView<Project> projectListview;
     @FXML private JFXTextField textField;
     private GrumsenModel gm;
-    private ProjectViewController pvc;
     
     public MainViewController(){
         gm = new GrumsenModel();
-        pvc = new ProjectViewController();
     }
     
     @FXML
@@ -151,20 +149,5 @@ public class MainViewController implements Initializable{
         List<Project> listp = gm.getAllProjects();
         listProject.addAll(listp);
         projectListview.getItems().addAll(listProject);
-    }
-    
-    @FXML
-    private void handleProjectsBtnAction(ActionEvent e){
-        
-    }
-    
-    @FXML
-    private void handleCustomersBtnAction(ActionEvent e){
-        
-    }
-    
-    @FXML
-    private void handleStatisticsBtnAction(ActionEvent e){
-        
     }
 }

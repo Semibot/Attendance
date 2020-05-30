@@ -79,14 +79,25 @@ public class ProjectViewController implements Initializable{
     }
     
     public int getPersonId(){
-        List<Person> pList = gm.getAllPeople();
+        List<Admin> aList = gm.getAllAdmins();
+        List<User> uList = gm.getAllUsers();
         Map<Integer, String> map = new HashMap<>();
+        Map<Integer, String> map2 = new HashMap<>();
         String name = String.valueOf(personProjectCB.getValue());
         
-        for(Person p : pList){
-            map.put(p.getId(), p.getName());
-            Integer key = p.getId();
-            String value = p.getName();
+        for(Admin a : aList){
+            map.put(a.getId(), a.getName());
+            Integer key = a.getId();
+            String value = a.getName();
+            if(value.equals(name)){
+                return key;
+            }
+        }
+        
+        for(User u : uList){
+            map.put(u.getId(), u.getName());
+            Integer key = u.getId();
+            String value = u.getName();
             if(value.equals(name)){
                 return key;
             }

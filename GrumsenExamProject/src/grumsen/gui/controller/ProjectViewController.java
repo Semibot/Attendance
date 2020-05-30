@@ -95,7 +95,7 @@ public class ProjectViewController implements Initializable{
         }
         
         for(User u : uList){
-            map.put(u.getId(), u.getName());
+            map2.put(u.getId(), u.getName());
             Integer key = u.getId();
             String value = u.getName();
             if(value.equals(name)){

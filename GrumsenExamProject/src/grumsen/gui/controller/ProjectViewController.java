@@ -6,9 +6,8 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import grumsen.be.Admin;
 import grumsen.be.Customer;
-import grumsen.be.Person;
 import grumsen.be.Project;
-import grumsen.be.User;
+import grumsen.be.RegularUser;
 import grumsen.gui.model.GrumsenModel;
 import java.net.URL;
 import java.text.ParseException;
@@ -32,13 +31,11 @@ public class ProjectViewController implements Initializable{
     @FXML private JFXTextField nameProjectField;
     @FXML private JFXRadioButton trueProjectRB;
     @FXML private JFXRadioButton falseProjectRB;
-    @FXML private JFXComboBox personProjectCB;
+    @FXML private JFXComboBox userProjectCB;
     @FXML private JFXComboBox customerProjectCB;
     @FXML private JFXTextField priceProjectField;
     @FXML private JFXButton cancelProjectBtn;
     @FXML private JFXButton saveProjectBtn;
-    @FXML private JFXTextField notesProjectField;
-    @FXML private JFXTextField logProjectField;
     private GrumsenModel gm;
     
     public ProjectViewController(){
@@ -48,23 +45,19 @@ public class ProjectViewController implements Initializable{
     @FXML
     private void handleSaveProjectBtn(ActionEvent e) throws ParseException{
         if(!nameProjectField.getText().isEmpty()){
-            if(trueProjectRB.getText().equalsIgnoreCase("True")){
+            if(trueProjectRB.isSelected()){
                 Project p = new Project(0,
                     nameProjectField.getText(),
-                    trueProjectRB.getText(),
-                    logProjectField.getText(),
-                    notesProjectField.getText(),
+                    Boolean.parseBoolean(trueProjectRB.getText()),
                     Integer.parseInt(priceProjectField.getText()),
-                    getPersonId(), getCustomerId());
+                    getUserId(), getCustomerId());
                 parent.addProject(p);
-            }else if(falseProjectRB.getText().equalsIgnoreCase("False")){
+            }else if(falseProjectRB.isSelected()){
                 Project p = new Project(0,
                     nameProjectField.getText(),
-                    falseProjectRB.getText(),
-                    logProjectField.getText(),
-                    notesProjectField.getText(),
+                    Boolean.parseBoolean(falseProjectRB.getText()),
                     Integer.parseInt(priceProjectField.getText()),
-                    getPersonId(), getCustomerId());
+                    getUserId(), getCustomerId());
                 parent.addProject(p);
             }
         }
@@ -78,26 +71,26 @@ public class ProjectViewController implements Initializable{
         cp.close();
     }
     
-    public int getPersonId(){
+    public int getUserId(){
         List<Admin> aList = gm.getAllAdmins();
-        List<User> uList = gm.getAllUsers();
+        List<RegularUser> ruList = gm.getAllRegularUsers();
         Map<Integer, String> map = new HashMap<>();
         Map<Integer, String> map2 = new HashMap<>();
-        String name = String.valueOf(personProjectCB.getValue());
+        String name = String.valueOf(userProjectCB.getValue());
         
         for(Admin a : aList){
-            map.put(a.getId(), a.getName());
-            Integer key = a.getId();
+            map.put(a.getUserId(), a.getName());
+            Integer key = a.getUserId();
             String value = a.getName();
             if(value.equals(name)){
                 return key;
             }
         }
         
-        for(User u : uList){
-            map2.put(u.getId(), u.getName());
-            Integer key = u.getId();
-            String value = u.getName();
+        for(RegularUser ru : ruList){
+            map2.put(ru.getUserId(), ru.getName());
+            Integer key = ru.getUserId();
+            String value = ru.getName();
             if(value.equals(name)){
                 return key;
             }
@@ -128,15 +121,16 @@ public class ProjectViewController implements Initializable{
         customerProjectCB.getItems().addAll(cList);
     }
     
-    private void createPersonCBItems(){
+    private void createUserCBItems(){
         ObservableList<Admin> aList =
                 FXCollections.observableArrayList(
                         gm.getAllAdmins());
-        personProjectCB.getItems().addAll(aList);
-        ObservableList<User> uList =
+        userProjectCB.getItems().addAll(aList);
+        
+        ObservableList<RegularUser> ruList =
                 FXCollections.observableArrayList(
-                        gm.getAllUsers());
-        personProjectCB.getItems().addAll(uList);
+                        gm.getAllRegularUsers());
+        userProjectCB.getItems().addAll(ruList);
     }
     
     public void setParentWindowController(MainViewController parent){
@@ -145,7 +139,7 @@ public class ProjectViewController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        createPersonCBItems();
+        createUserCBItems();
         createCustomerCBItems();
     }
 }

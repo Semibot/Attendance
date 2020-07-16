@@ -9,12 +9,12 @@ import javafx.beans.property.StringProperty;
  *
  * @author Daniel
  */
-public class Admin{
+public class RegularUser{
     private final IntegerProperty userId;
     private final StringProperty name;
     private final IntegerProperty projectId;
     
-    public Admin(int userId, String name, int projectId){
+    public RegularUser(int userId, String name, int projectId){
         this.userId = new SimpleIntegerProperty(userId);
         this.name = new SimpleStringProperty(name);
         this.projectId = new SimpleIntegerProperty(projectId);

@@ -1,9 +1,12 @@
 package grumsen.be;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -12,24 +15,29 @@ import javafx.beans.property.StringProperty;
 public class Project{
     private final IntegerProperty id;
     private final StringProperty name;
-    private final StringProperty invoiceable;
-    private final StringProperty logHours;
-    private final StringProperty notes;
+    private final BooleanProperty invoiceable;
     private final IntegerProperty hourlyPrice;
-    private final IntegerProperty personId;
+    private final IntegerProperty userId;
     private final IntegerProperty customerId;
+    private Button button;
     
-    public Project(int id, String name, String invoiceable,
-            String logHours, String notes, int hourlyPrice,
-            int personId, int customerId){
+    public Project(int id, String name, Boolean invoiceable,
+            int hourlyPrice, int userId, int customerId){
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.invoiceable = new SimpleStringProperty(invoiceable);
-        this.logHours = new SimpleStringProperty(logHours);
-        this.notes = new SimpleStringProperty(notes);
+        this.invoiceable = new SimpleBooleanProperty(invoiceable);
         this.hourlyPrice = new SimpleIntegerProperty(hourlyPrice);
-        this.personId = new SimpleIntegerProperty(personId);
+        this.userId = new SimpleIntegerProperty(userId);
         this.customerId = new SimpleIntegerProperty(customerId);
+        this.button = new Button("button");
+    }
+    
+    public Button getButton(){
+        return button;
+    }
+    
+    public void setButton(Button button){
+        this.button = button;
     }
     
     public int getHourlyPrice(){
@@ -56,51 +64,27 @@ public class Project{
         return customerId;
     }
     
-    public int getPersonId(){
-        return personId.get();
+    public int getUserId(){
+        return userId.get();
     }
     
-    public void setPersonId(int value){
-        personId.set(value);
+    public void setUserId(int value){
+        userId.set(value);
     }
     
-    public IntegerProperty personIdProperty(){
-        return personId;
+    public IntegerProperty userIdProperty(){
+        return userId;
     }
     
-    public String getNotes(){
-        return notes.get();
-    }
-    
-    public void setNotes(String value){
-        notes.set(value);
-    }
-    
-    public StringProperty notesProperty(){
-        return notes;
-    }
-    
-    public String getLogHours(){
-        return logHours.get();
-    }
-    
-    public void setLogHours(String value){
-        logHours.set(value);
-    }
-    
-    public StringProperty logHoursProperty(){
-        return logHours;
-    }
-    
-    public String getInvoiceable(){
+    public boolean isInvoiceable(){
         return invoiceable.get();
     }
     
-    public void setInvoiceable(String value){
+    public void setInvoiceable(boolean value){
         invoiceable.set(value);
     }
     
-    public StringProperty invoiceableProperty(){
+    public BooleanProperty invoiceableProperty(){
         return invoiceable;
     }
     

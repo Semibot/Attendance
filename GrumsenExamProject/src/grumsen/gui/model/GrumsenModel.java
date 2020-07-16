@@ -2,66 +2,60 @@ package grumsen.gui.model;
 
 import grumsen.be.Admin;
 import grumsen.be.Customer;
-import grumsen.be.Person;
 import grumsen.be.Project;
-import grumsen.be.User;
+import grumsen.be.RegularUser;
 import grumsen.bll.GrumsenLogic;
+import grumsen.gui.controller.UserViewController;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  *
  * @author Daniel
  */
 public class GrumsenModel{
+    private GrumsenLogic admingl = new GrumsenLogic();
+    private GrumsenLogic customergl = new GrumsenLogic();
+    private GrumsenLogic regusergl = new GrumsenLogic();
+    private GrumsenLogic projectgl = new GrumsenLogic();
     
     public Admin createAdmin(Admin a) throws SQLException{
-        GrumsenLogic admingl = new GrumsenLogic();
         return admingl.createAdmin(a);
     }
     
     public List<Admin> getAllAdmins(){
-        GrumsenLogic admingl = new GrumsenLogic();
         return admingl.getAllAdmins();
     }
     
     public Customer createCustomer(Customer c) throws SQLException{
-        GrumsenLogic customergl = new GrumsenLogic();
         return customergl.createCustomer(c);
     }
     
     public List<Customer> getAllCustomers(){
-        GrumsenLogic customergl = new GrumsenLogic();
         return customergl.getAllCustomers();
     }
     
-    public User createUser(User u) throws SQLException{
-        GrumsenLogic usergl = new GrumsenLogic();
-        return usergl.createUser(u);
+    public RegularUser createRegularUser(RegularUser ru) throws SQLException{
+        return regusergl.createRegularUser(ru);
     }
     
-    public List<User> getAllUsers(){
-        GrumsenLogic usergl = new GrumsenLogic();
-        return usergl.getAllUsers();
+    public List<RegularUser> getAllRegularUsers(){
+        return regusergl.getAllRegularUsers();
     }
     
     public Project createProject(Project p) throws SQLException{
-        GrumsenLogic projectgl = new GrumsenLogic();
         return projectgl.createProject(p);
     }
     
     public List<Project> getAllProjects(){
-        GrumsenLogic pgl = new GrumsenLogic();
-        return pgl.getAllProjects();
-    }
-    
-    public Person createPerson(Person p) throws SQLException{
-        GrumsenLogic persongl = new GrumsenLogic();
-        return persongl.createPerson(p);
-    }
-    
-    public List<Person> getAllPeople(){
-        GrumsenLogic pgl = new GrumsenLogic();
-        return pgl.getAllPeople();
+        return projectgl.getAllProjects();
     }
 }

@@ -2,14 +2,12 @@ package grumsen.bll;
 
 import grumsen.be.Admin;
 import grumsen.be.Customer;
-import grumsen.be.Person;
 import grumsen.be.Project;
-import grumsen.be.User;
+import grumsen.be.RegularUser;
 import grumsen.dal.AdminDAO;
 import grumsen.dal.CustomerDAO;
-import grumsen.dal.PersonDAO;
 import grumsen.dal.ProjectDAO;
-import grumsen.dal.UserDAO;
+import grumsen.dal.RegularUserDAO;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -18,54 +16,40 @@ import java.util.List;
  * @author Daniel
  */
 public class GrumsenLogic{
+    private AdminDAO adao = new AdminDAO();
+    private CustomerDAO cdao = new CustomerDAO();
+    private RegularUserDAO rudao = new RegularUserDAO();
+    private ProjectDAO pdao = new ProjectDAO();
     
     public Admin createAdmin(Admin a) throws SQLException{
-        AdminDAO adao = new AdminDAO();
         return adao.createAdmin(0, a);
     }
     
     public List<Admin> getAllAdmins(){
-        AdminDAO adao = new AdminDAO();
         return adao.getAllAdmins();
     }
     
     public Customer createCustomer(Customer c) throws SQLException{
-        CustomerDAO cdao = new CustomerDAO();
         return cdao.createCustomer(0, c);
     }
     
     public List<Customer> getAllCustomers(){
-        CustomerDAO cdao = new CustomerDAO();
         return cdao.getAllCustomers();
     }
     
-    public User createUser(User u) throws SQLException{
-        UserDAO udao = new UserDAO();
-        return udao.createUser(0, u);
+    public RegularUser createRegularUser(RegularUser ru) throws SQLException{
+        return rudao.createRegularUser(0, ru);
     }
     
-    public List<User> getAllUsers(){
-        UserDAO udao = new UserDAO();
-        return udao.getAllUsers();
+    public List<RegularUser> getAllRegularUsers(){
+        return rudao.getAllRegularUsers();
     }
     
     public Project createProject(Project p) throws SQLException{
-        ProjectDAO pdao = new ProjectDAO();
         return pdao.createProject(0, p);
     }
     
     public List<Project> getAllProjects(){
-        ProjectDAO pdao = new ProjectDAO();
         return pdao.getAllProjects();
-    }
-    
-    public Person createPerson(Person p) throws SQLException{
-        PersonDAO pdao = new PersonDAO();
-        return pdao.createPerson(0, p);
-    }
-    
-    public List<Person> getAllPeople(){
-        PersonDAO pdao = new PersonDAO();
-        return pdao.getAllPeople();
     }
 }

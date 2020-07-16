@@ -19,9 +19,9 @@ import java.util.logging.Logger;
 public class AdminDAO{
     private DBConnector dbConnect = new DBConnector();
     
-    public Admin createAdmin(int id, Admin a) throws SQLException{
+    public Admin createAdmin(int userId, Admin a) throws SQLException{
         try(Connection conn = dbConnect.getConnection()){
-            String sql = "INSERT INTO AdminType(name, projectId) VALUES(?,?)";
+            String sql = "INSERT INTO [Admin](name, projectId) VALUES(?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, a.getName());
@@ -35,7 +35,7 @@ public class AdminDAO{
             
             try(ResultSet generatedKeys = pstmt.getGeneratedKeys()){
                 if(generatedKeys.next()){
-                    a.setId((int)generatedKeys.getLong(1));
+                    a.setUserId((int)generatedKeys.getLong(1));
                 }else {
                     throw new SQLException("Creating an admin failed, no ID obtained");
                 }
@@ -47,14 +47,14 @@ public class AdminDAO{
     public List<Admin> getAllAdmins(){
         List<Admin> admins = new ArrayList();
         try(Connection conn = dbConnect.getConnection()){
-            String sql = "SELECT * FROM AdminType";
+            String sql = "SELECT * FROM [Admin]";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
-                int id = rs.getInt("id");
+                int ids = rs.getInt("userId");
                 String name = rs.getString("name");
                 int projectId = rs.getInt("projectId");
-                Admin a = new Admin(id, name, projectId);
+                Admin a = new Admin(ids, name, projectId);
                 admins.add(a);
             }
         }catch (SQLServerException ex){

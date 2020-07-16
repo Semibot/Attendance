@@ -2,30 +2,35 @@
     Created on : 29-Apr-2020, 20:15:51
     Author     : Daniel
 */
-
 AnchorPane{
     -fx-background-color: #6666ff;
 }
 
-JFXButton{
+.jfx-button{
     -fx-text-fill: white;
     -fx-border-color: white;
 }
 
-Label{
+.label{
     -fx-text-fill: white;
 }
 
-JFXTextField{
+.jfx-text-field{
     -fx-prompt-text-fill: white;
     -fx-text-fill: white;
 }
 
-JFXComboBox{
+.jfx-combo-box{
     -fx-text-fill: white;
     -fx-prompt-text-fill: white;
 }
 
-JFXRadioButton{
+/*Styling the drop down menu of the combo-box*/
+.jfx-combo-box .list-cell{
+    -fx-background-color: #6666ff;
+    -fx-text-fill: white;
+}
+
+.jfx-radio-button{
     -fx-text-fill: white;
 }

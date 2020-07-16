@@ -51,10 +51,10 @@ public class CustomerDAO{
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
-                int id = rs.getInt("id");
+                int ids = rs.getInt("id");
                 String name = rs.getString("name");
                 int projectId = rs.getInt("projectId");
-                Customer c = new Customer(id, name, projectId);
+                Customer c = new Customer(ids, name, projectId);
                 customers.add(c);
             }
         }catch (SQLServerException ex){

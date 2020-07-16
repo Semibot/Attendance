@@ -22,16 +22,14 @@ public class ProjectDAO{
     public Project createProject(int id, Project p) throws SQLException{
         try(Connection conn = dbConnect.getConnection()){
             String sql = "INSERT INTO Project(name, invoiceable,"
-               +"logHours, notes, hourlyPrice, personId, customerId) VALUES(?,?,?,?,?,?,?)";
+               +"hourlyPrice, userId, customerId) VALUES(?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, p.getName());
-            pstmt.setString(2, p.getInvoiceable());
-            pstmt.setString(3, p.getLogHours());
-            pstmt.setString(4, p.getNotes());
-            pstmt.setInt(5, p.getHourlyPrice());
-            pstmt.setInt(6, p.getPersonId());
-            pstmt.setInt(7, p.getCustomerId());
+            pstmt.setBoolean(2, p.isInvoiceable());
+            pstmt.setInt(3, p.getHourlyPrice());
+            pstmt.setInt(4, p.getUserId());
+            pstmt.setInt(5, p.getCustomerId());
             
             int createdRows = pstmt.executeUpdate();
             
@@ -59,14 +57,12 @@ public class ProjectDAO{
             while(rs.next()){
                 int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                String invoiceable = rs.getString("invoiceable");
-                String logHours = rs.getString("logHours");
-                String notes = rs.getString("notes");
+                Boolean invoiceable = rs.getBoolean("invoiceable");
                 int hourlyPrice = rs.getInt("hourlyPrice");
-                int personId = rs.getInt("personId");
+                int userId = rs.getInt("userId");
                 int customerId = rs.getInt("customerId");
                 Project p = new Project(ids, name, invoiceable,
-                        logHours, notes, hourlyPrice, personId, customerId);
+                        hourlyPrice, userId, customerId);
                 projects.add(p);
             }
         }catch (SQLServerException ex){

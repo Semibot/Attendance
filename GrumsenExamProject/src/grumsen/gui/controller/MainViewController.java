@@ -1,11 +1,12 @@
 package grumsen.gui.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import grumsen.be.Admin;
 import grumsen.be.Customer;
 import grumsen.be.Project;
-import grumsen.be.User;
+import grumsen.be.RegularUser;
 import grumsen.gui.model.GrumsenModel;
 import java.io.IOException;
 import java.net.URL;
@@ -17,11 +18,17 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -30,12 +37,14 @@ import javafx.stage.Stage;
  * @author Daniel
  */
 public class MainViewController implements Initializable{
-    private final ObservableList listProject = FXCollections.observableArrayList();
+    private final ObservableList listProject;
     @FXML private JFXListView<Project> projectListview;
     @FXML private JFXTextField textField;
+    private Stage myStage;
     private GrumsenModel gm;
     
     public MainViewController(){
+        listProject = FXCollections.observableArrayList();
         gm = new GrumsenModel();
     }
     
@@ -45,7 +54,7 @@ public class MainViewController implements Initializable{
         
         if(!textField.getText().isEmpty()){
             Project p = new Project(0, projectName,
-                    "True", "0", "", 375, 0, 0);
+                    false, 0, 0, 0);
             addProject(p);
             projectListview.setItems(listProject);
             textField.clear();
@@ -69,8 +78,8 @@ public class MainViewController implements Initializable{
         createProjectWindow.initModality(Modality.NONE);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/grumsen/gui/view/ProjectView.fxml"));
         Parent root = loader.load();
-        ProjectViewController prvc = loader.getController();
-        prvc.setParentWindowController(this);
+        ProjectViewController pvc = loader.getController();
+        pvc.setParentWindowController(this);
         
         Scene scene = new Scene(root);
         createProjectWindow.setTitle("Create Project View");
@@ -105,18 +114,18 @@ public class MainViewController implements Initializable{
     }
     
     @FXML
-    private void handleCreatePersonBtn(ActionEvent e) throws IOException{
-        Stage createPersonWindow = new Stage();
-        createPersonWindow.initModality(Modality.NONE);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/grumsen/gui/view/PersonView.fxml"));
+    private void handleCreateUserBtn(ActionEvent e) throws IOException{
+        Stage createUserWindow = new Stage();
+        createUserWindow.initModality(Modality.NONE);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/grumsen/gui/view/UserView.fxml"));
         Parent root = loader.load();
-        PersonViewController pevc = loader.getController();
-        pevc.setParentWindowController(this);
+        UserViewController uvc = loader.getController();
+        uvc.setParentWindowController(this);
         
         Scene scene = new Scene(root);
-        createPersonWindow.setTitle("Create Person View");
-        createPersonWindow.setScene(scene);
-        createPersonWindow.showAndWait();
+        createUserWindow.setTitle("Create User View");
+        createUserWindow.setScene(scene);
+        createUserWindow.showAndWait();
     }
     
     public void addAdmin(Admin a){
@@ -130,11 +139,11 @@ public class MainViewController implements Initializable{
         }
     }
     
-    public void addUser(User u){
+    public void addRegularUser(RegularUser ru){
         try{
-            User user = gm.createUser(u);
+            RegularUser regUser = gm.createRegularUser(ru);
             projectListview.getItems().clear();
-            listProject.addAll(user);
+            listProject.addAll(regUser);
             projectListview.getItems().addAll(listProject);
         }catch (SQLException ex){
             Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,10 +153,82 @@ public class MainViewController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb){
         //Add project
-        String a = "Projects:";
-        listProject.add(a);
+        //String a = "Projects:";
+        //listProject.add(a);
         List<Project> listp = gm.getAllProjects();
         listProject.addAll(listp);
         projectListview.getItems().addAll(listProject);
+        
+        projectListview.setItems(listProject);
+        projectListview.setCellFactory(param -> new CustomCell());
+        
+        StackPane pane = new StackPane();
+        pane.getChildren().add(projectListview);
+        Scene scene = new Scene(pane);
+        //Stage stage = (Stage) textField.getScene().getWindow();
+        //stage.setScene(scene);
+        setStage(myStage);
+    }
+    
+    static class CustomCell extends ListCell<Project>{
+        @FXML private HBox hbox;
+        @FXML private Label projectNameLbl;
+        @FXML private Pane pane;
+        @FXML private Label timeLbl;
+        @FXML private JFXButton playBtn;
+        @FXML private JFXButton pauseBtn;
+        @FXML private JFXButton stopBtn;
+        private FXMLLoader fxmlLoader;
+        
+        public CustomCell(){
+            super();
+            hbox.getChildren().addAll(projectNameLbl, pane, timeLbl, playBtn, pauseBtn, stopBtn);
+            playBtn.setOnAction(new EventHandler<ActionEvent>(){
+                @Override
+                public void handle(ActionEvent e){
+                    System.out.println("Timer running");
+                }
+            });
+            pauseBtn.setOnAction(new EventHandler<ActionEvent>(){
+                @Override
+                public void handle(ActionEvent e){
+                    System.out.println("Timer paused");
+                }
+            });
+            stopBtn.setOnAction(new EventHandler<ActionEvent>(){
+                @Override
+                public void handle(ActionEvent e){
+                    System.out.println("Timer stoped");
+                }
+            });
+        }
+        
+        @Override
+        public void updateItem(Project project, boolean empty){
+            super.updateItem(project, empty);
+            if(empty || project == null){
+                setText(null);
+                setGraphic(null);
+            }else {
+                if(fxmlLoader == null){
+                    fxmlLoader = new FXMLLoader(getClass().getResource("/grumsen/gui/view/CustomCell.fxml"));
+                    fxmlLoader.setController(this);
+                    try{
+                        fxmlLoader.load();
+                    }catch (IOException ex){
+                        Logger.getLogger(CustomCell.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                projectNameLbl.setText(project.getName());
+                //timeLbl.setText(logHours.getTime());
+                
+                setText(null);
+                setGraphic(hbox);
+            }
+        }
+    }
+    
+    public void setStage(Stage stage){
+        myStage = stage;
     }
 }
